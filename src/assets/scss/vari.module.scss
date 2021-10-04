@@ -1,0 +1,12 @@
+$font-raleway: 'Raleway', sans-serif;
+$star-rating-filled: #ffc107; //#ffc107
+$star-rating-unfilled: #e4e5e9;
+$star-rated: #555;
+$product-item-horizontal-height: 150px;
+$product-new-list-max-height: 490px;
+
+:export {
+    starRatingFilled: $star-rating-filled;
+    starRatingUnfilled: $star-rating-unfilled;
+    starRated: $star-rated;
+}
