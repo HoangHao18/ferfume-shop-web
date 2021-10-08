@@ -9,10 +9,10 @@ export default function Footer(){
             <div className="container">
                 <div className="row-hh f-content">
                     <div className="col-5 f-local">
-                        <div className="f-item-title">Name Shop</div>
+                        <div className="f-item-title">COSMOS</div>
                         <div className="f-item-content">
                             <span><i class='bx bx-map'></i> 97 Man Thien, Hiep Phu, Quan 9</span>
-                            <span><i class='bx bx-envelope' ></i> nameshop@gmail.com</span>
+                            <span><i class='bx bx-envelope' ></i> cosmos@gmail.com</span>
                             <span><i class='bx bx-phone'></i> 0314159265</span>
                         </div>
                         
@@ -45,9 +45,9 @@ export default function Footer(){
             </div>
 
             <div className="f-last">
-                <span><i class='bx bx-crown'></i></span>
-                <i class='bx bx-rocket'></i>
-                <i class='bx bx-planet'></i>
+                <span className="fl-icon"><i class='bx bx-crown'></i></span>
+                <span className="fl-icon"><i class='bx bx-rocket'></i></span>
+                <span className="fl-icon"><i class='bx bx-planet'></i></span>
             </div>
         </div>
     )

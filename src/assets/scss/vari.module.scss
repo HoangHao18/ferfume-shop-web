@@ -1,9 +1,16 @@
+$font-khula: 'Khula', sans-serif;
 $font-raleway: 'Raleway', sans-serif;
+$font-dancing-script: 'Dancing Script', cursive;
+$font-amatic-sc: 'Amatic SC', cursive;
+$font-zeyada: 'Zeyada', cursive;
 $star-rating-filled: #ffc107; //#ffc107
 $star-rating-unfilled: #e4e5e9;
+$color-on-hover: #d34c4c;
 $star-rated: #555;
+$bg-home-pragrance-slider: white;
 $product-item-horizontal-height: 150px;
 $product-new-list-max-height: 490px;
+$bg-home-banner: '/assets/images/headerSlide02.jpg';
 
 :export {
     starRatingFilled: $star-rating-filled;
