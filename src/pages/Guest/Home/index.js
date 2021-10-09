@@ -3,7 +3,6 @@ import HomeCategory from "../../../components/Guest/HomeCategory";
 import BreakSpace from "../../../components/share/BreakSpace";
 import ProductItemsSlider from "../../../components/Guest/ProductItemsSlider";
 import ProductNewList from "../../../components/Guest/ProductNewList";
-import Footer from "../../../components/Guest/Footer";
 import TitleSection from "../../../components/share/TitleSection";
 import HomeBanner from "../../../components/Guest/HomeBanner";
 import HomePragrances from "../../../components/Guest/HomePragrances";
@@ -35,7 +34,7 @@ export default function Home(){
             <TitleSection title="Sản phẩm mới"/>
             <ProductNewList/>
             <BreakSpace h="30px" />
-            <Footer/>
+        
           
         </div>
     )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 export default function HeaderBar(){
-    const isLogin = true;
+    const isLogin = false;
     const userCurrent = {
         name: "Oggy",
         id: 1,
