@@ -1,14 +1,15 @@
 @import '../../../assets/scss/vari.module.scss';
-$black: rgba(34, 33, 33, 0.8);
+$black: #222121cc;
+$height-address-box: 120px;
 
 .register-container{
     font-family: $font-raleway;
     .col-deco{
-       height: 900px !important;
+       height: 928px !important;
     }
     .child{
         //background-color: rgb(134, 130, 125);
-        width: 80%;
+        width: 85%;
         //height: 100%;
         //margin: 0 auto;
         position: relative;
@@ -20,7 +21,7 @@ $black: rgba(34, 33, 33, 0.8);
             font-weight: 500;
             color: $color-on-hover;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
         .register-content{  
@@ -119,8 +120,72 @@ $black: rgba(34, 33, 33, 0.8);
                             }
                         }
                     }
+
+                    .address-user{
+                        height: 120px;
+                    }
+
+
+
+                    .select-hh{
+                        
+                        .css-1s2u09g-control{
+                            border-radius: 0;
+                            height: 48px;
+                            .css-xcaois-singleValue{
+                                font-size: 14px;
+                            }
+                        }
+                        .css-1pahdxg-control{
+                            height: 48px;
+                            border: 1px solid #e2e2e2;
+                            box-shadow: $b-shadow-2 !important;
+                            .css-xcaois-singleValue{
+                                font-size: 14px;
+                            }
+                            &:hover{
+                                border: 1px solid #e2e2e2 !important;
+                                box-shadow: $b-shadow-2 !important;
+                            }
+                        }
+                        &:focus-visible{
+
+                        }
+                        &:hover, &:focus, &:focus-visible{
+                            background: transparent;
+                            outline: none;
+                            box-shadow: none;
+                            box-shadow: $b-shadow-2;
+                            //border-color: $color-on-hover;
+                        }
+                        &:active{
+                            outline: none;
+                        }
+                    }
         
                 
+                }
+                .form-group.avatar-input{
+                    label{
+                        text-align: center;
+                    }
+                    label.choose-img{
+                        padding: 3px 10px;
+                        width: fit-content;
+                    }
+                    .preview-img{
+                        margin: 0 auto 15px auto;
+                        width: 70px;
+                        height: 70px;
+                        // width: calc(#{$height-address-box} - 53px);
+                        // height: calc(#{$height-address-box} - 53px);
+                        border: 1px solid #ced4da;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        &:hover{
+                            border-color: $color-on-hover;
+                        }
+                    }
                 }
                 .form-group.last{
                     margin-top: 0px;

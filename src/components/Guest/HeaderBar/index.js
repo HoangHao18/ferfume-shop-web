@@ -22,7 +22,7 @@ export default function HeaderBar(){
     return(
         <div className="header-bar row-hh">
             <div className="col-4 logo-page">
-                {/* <span><img src="/assets/images/icon_logo_page.png"></img></span> */}
+                <span><img src="/assets/images/logoshop.png" alt=""></img></span>
             </div>
 
             <div className="col-4 list-page">

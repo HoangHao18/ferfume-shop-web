@@ -34,8 +34,7 @@ export default function Home(){
             <TitleSection title="Sản phẩm mới"/>
             <ProductNewList/>
             <BreakSpace h="30px" />
-        
-          
+
         </div>
     )
 }

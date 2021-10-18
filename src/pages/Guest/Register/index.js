@@ -1,14 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './style.scss'
+import vari from '../../../assets/scss/vari.module.scss';
+import Select from 'react-select'
 //import Lightbox from 'react-image-lightbox';
 //import 'react-image-lightbox/style.css';
 
 import gender_items from '../../../assets/json/gender.json';
 
 import LogResBgPage from '../../../components/share/LogResBgPage';
+import SelectAddress from '../../../components/share/SelectAddress';
+
+const customStylesSelect = {
+    option: (provided, state) => ({
+      ...provided,
+      //borderBottom: '1px dotted pink',
+      //color: state.isSelected ? 'red' : 'blue',
+      //backgroundColor: state.isSelected ? 'red' : 'white',
+      
+      backgroundColor: state.isDisabled
+        ? undefined
+        : state.isSelected
+        ? vari.selectItemChoosed
+        : state.isFocused
+        ? vari.selectItemHover
+        : undefined,
+    }),
+    
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+  
+      return { ...provided, opacity, transition, fontSize:"20px" };
+    }
+  }
 
 export default function Register(){
+    const options = [
+        { value: 'Nam', label: 'Nam' },
+        { value: 'Nữ', label: 'Nữ' },
+        { value: 'Khác', label: 'Khác' }
+      ]
+      
 
     const [formData, setFormData] = useState({
         name: '',
@@ -34,9 +67,7 @@ export default function Register(){
     })
     const [isValidForm, setIsValidForm] = useState(false);
     const [previewImgURL, setPreviewImgURL] = useState('');
-    const [isOpenPreviewImg, setIsOpenPreviewImg] = useState(false);
-
-
+    
     function handleChangeFormData(key){ 
         return(evt) => {   
             setFormData({
@@ -57,7 +88,8 @@ export default function Register(){
         let dataFile = event.target.files;
         let file = dataFile[0];
         if(file){
-            let objectUrl = URL.createObjectURL(file);
+            //let objectUrl = URL.createObjectURL(file);
+            let objectUrl = URL.createObjectURL(file)
             setPreviewImgURL(objectUrl);
         }
         setFormData({
@@ -65,11 +97,6 @@ export default function Register(){
             image: file
         })
         
-    }
-
-    const openPreviewimage = () => {
-        if(!previewImgURL) return;
-        setIsOpenPreviewImg(true);
     }
 
     function checkValidateInput(formD){
@@ -199,7 +226,16 @@ export default function Register(){
                                 <div className="col-4">
                                     <div className="form-group">
                                         <label className="label">Giới tính</label>
-                                        <select className="form-control"
+                                        <Select options={options}
+                                            className="select-hh"
+                                            defaultValue={options[0]}
+                                            placeholder="Giới tính"
+                                            menuColor = "red"
+                                            styles={customStylesSelect}
+                                            // value={formData.gender} 
+                                            // onChange={handleChangeFormData('gender')} 
+                                        />
+                                        {/* <select className="form-control"
                                             value={formData.gender} 
                                             onChange={handleChangeFormData('gender')} 
                                         >
@@ -207,13 +243,12 @@ export default function Register(){
                                                 gender_items.map((item, index) => {
                                                     return(
                                                         <option className="select-item" key={index}>{item.name}
-                                                            {/* <span><i className={item.icon}></i></span>
-                                                            <span></span> */}
                                                         </option>
+                                                        
                                                     )
                                                 })
                                             }
-                                        </select>
+                                        </select> */}
                                     </div>
                                 </div>
                             </div>
@@ -254,72 +289,13 @@ export default function Register(){
                                 </div>
                             </div>
 
-                            <div className="row-hh">
-                            <div className="col-4">
-                                    <div className="form-group">
-                                        <label className="label">Tỉnh/TP</label>
-                                        <select className="form-control"
-                                            value={formData.gender} 
-                                            onChange={handleChangeFormData('gender')} 
-                                        >
-                                            {gender_items && gender_items.length > 0 &&
-                                                gender_items.map((item, index) => {
-                                                    return(
-                                                        <option className="select-item" key={index}>{item.name}
-                                                            {/* <span><i className={item.icon}></i></span>
-                                                            <span></span> */}
-                                                        </option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="form-group">
-                                        <label className="label">Huyện/Quận</label>
-                                        <select className="form-control"
-                                            value={formData.gender} 
-                                            onChange={handleChangeFormData('gender')} 
-                                        >
-                                            {gender_items && gender_items.length > 0 &&
-                                                gender_items.map((item, index) => {
-                                                    return(
-                                                        <option className="select-item" key={index}>{item.name}
-                                                            {/* <span><i className={item.icon}></i></span>
-                                                            <span></span> */}
-                                                        </option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="form-group">
-                                        <label className="label">Xã/Phường/TT</label>
-                                        <select className="form-control"
-                                            value={formData.gender} 
-                                            onChange={handleChangeFormData('gender')} 
-                                        >
-                                            {gender_items && gender_items.length > 0 &&
-                                                gender_items.map((item, index) => {
-                                                    return(
-                                                        <option className="select-item" key={index}>{item.name}
-                                                            {/* <span><i className={item.icon}></i></span>
-                                                            <span></span> */}
-                                                        </option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                            <div className="">
+                                <SelectAddress/>
                             </div>
 
                             <div className="row-hh">
                                 <div className="col-8">
-                                    <div className="form-group">
+                                    <div className="form-group ">
                                         <label className="label">Số nhà/ thôn</label>
                                         <textarea type="text"  className="form-control address-user" placeholder=" "
                                             value={formData.address} 
@@ -329,23 +305,18 @@ export default function Register(){
                                     </div>
                                 </div>
                                 <div className="col-4">
-                                    <div className="form-group">
+                                    <div className="form-group avatar-input">
                                         <label className="label" name="image">Ảnh đại diện</label>
-                                        <div className="preview-img"
-                                            style={{ backgroundImage: `url(${previewImgURL})`}}
-                                            onClick = { () => openPreviewimage()}
-                                        ></div>
-                                        <input id="image" type="file" className="form-control "  hidden
-                                            onChange={ (event) => handleOnChangeImage(event)}
-                                        />
+                                        <div className="preview-img"><img src={previewImgURL} alt=""></img></div> 
+                                        <input id="image" type="file" className="form-control "  hidden onChange={ (event) => handleOnChangeImage(event)}/>
                                         <label className="form-control choose-img" htmlFor="image"><i class='bx bx-image-add icon-choose-img'></i>Chọn ảnh</label>
-                                    
+                                                                                                              
                                     </div>
                                 </div>      
                             </div>
 
                             <div className="form-group last">
-                                <div className="btn-left"><span>Thoát</span></div>
+                                <div className="btn-left"><span onClick={()=>handleCancel()}>Thoát</span></div>
                                 <span className="btn-right"><button type="submit" className="form-control btn">Đăng ký</button></span>
                                
                             </div>

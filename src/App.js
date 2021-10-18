@@ -22,11 +22,13 @@ import Contact from './pages/Guest/Contact';
 import Register from './pages/Guest/Register';
 //import LogResBgPage from './components/share/LogResBgPage';
 
+import AdminHome from './pages/Admin/AdminHome';
 
 function App() {
   return (
     <Router>
         <Switch>
+              <Route path="/admin" component={AdminHome}/>
             <div className="App">
               <HeaderBar/>
               <Route exact path="/" component={Home}/>
