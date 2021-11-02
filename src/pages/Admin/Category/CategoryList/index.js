@@ -1,13 +1,13 @@
 import './style.css'
-import Table from '../../../components/Admin/Table/Table'
+import Table from '../../../../components/Admin/Table/Table'
 
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
-import { getListCategoriesAsync, deleteCategoryAsync } from '../../../redux/actions/categoryAction';
-import ToolTable from '../../../components/Admin/ToolTable/ToolTable';
+import { getListCategoriesAsync, deleteCategoryAsync } from '../../../../redux/actions/categoryAction';
+import ToolTable from '../../../../components/Admin/ToolTable/ToolTable';
 
-import AddCategory from '../../../components/Admin/AddNew/Category/AddCategory';
+//import AddCategory from '../../../components/Admin/AddNew/Category/AddCategory';
 
 
 export default function Category(){
@@ -18,9 +18,12 @@ export default function Category(){
     const isLoading = useSelector(state => state.categories.isLoading)
     //const categoryList = useSelector(state => state.categories.categoryList);;
     console.log("categoryList",categoryList,"isloading", isLoading);
+
+    
     useEffect(() => {
         dispatch(getListCategoriesAsync());
-    }, []);
+        
+    },[]);
 
     let history = useHistory();
     const handleDelete = (categoryId) => {
@@ -29,10 +32,11 @@ export default function Category(){
         }
     }
     const handleEdit = (categoryId) => {
-        history.push(`/admin/categories/editCategory/${categoryId}`);
+        history.push(`/admin/categories/${categoryId}`);
     }
 
 
+    // eslint-disable-next-line
     const [currIndexStart, setCurrIndexStart] = useState(0);
 
     const userTableHead = [
@@ -50,8 +54,8 @@ export default function Category(){
             <td>{item.name}</td>
             <td>{item.description}</td>
             <td>
-                <span onClick={()=>handleEdit(item._id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
-                <span onClick={()=>handleDelete(item._id)}> <i class='bx bx-trash iconDelete'></i></span>
+                <span onClick={()=>handleEdit(item.id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
+                <span onClick={()=>handleDelete(item.id)}> <i class='bx bx-trash iconDelete'></i></span>
             </td>
         </tr>
     )
@@ -61,25 +65,12 @@ export default function Category(){
             <h2 className="page-header">Category</h2>
             {/* <AddCategory/> */}
             <ToolTable 
-                linkAdd = "/admin/categories/addCategory"
+                linkAdd = "/admin/categories/new-category"
             />
             <div className="row">
                 <div className="col-12">
                     <div className="card">
-                        <div className="card__body">
-                            {/* {
-                                (categoryList && categoryList.length > 0) ?
-                                <div>
-                                    {
-                                         categoryList.map((item, index)=>(
-                                            <div key={index} className="page-header">{item.name}</div>
-                                         ))
-                                    }
-                                </div>
-                                : <div>Data is empty</div>
-                            } */}
-
-
+                        <div className="card__body">                    
                             {
                                 isLoading ? <div>Loading...</div> : 
                                 (categoryList && categoryList.length > 0) ? <div>

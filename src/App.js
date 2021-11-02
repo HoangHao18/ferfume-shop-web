@@ -5,6 +5,9 @@ import './assets/scss/variables.scss';
 import './assets/boxicons-2.0.7/css/boxicons.min.css';
 import './App.css';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import{
   BrowserRouter as Router,
   Route,
@@ -40,6 +43,18 @@ function App() {
               {/* <Route path="/sale" component={Sale}/>
               <Route path="/cart" component={Cart}/>  
               <Route path="/buy" component={Buy}/>   */}
+
+              <ToastContainer
+                position="bottom-right"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
 
               <Footer/>
             </div>

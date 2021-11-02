@@ -57,6 +57,11 @@
     background-color: $bg-btn-ad;
     color: white;
     border: none;
+    cursor: pointer;
+    transition: all 0.6s;
+    &:hover{
+        background-color: $main-color;
+    }
 }
 .icon-add{
     font-weight: bold;

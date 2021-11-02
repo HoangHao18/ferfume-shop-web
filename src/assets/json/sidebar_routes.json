@@ -26,6 +26,11 @@
         "icon": "bx bx-store-alt"
     },
     {
+        "display_name": "fragrances",
+        "route": "/admin/fragrances",
+        "icon": "bx bx-spa"
+    },
+    {
         "display_name": "discount",
         "route": "/admin/discount",
         "icon": "bx bx-gift"

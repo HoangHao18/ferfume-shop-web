@@ -5,6 +5,9 @@ import Sidebar from '../../../components/Admin/Sidebar/Sidebar';
 import TopNav from '../../../components/Admin/TopNav/TopNav';
 import Routes from '../Routes';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { BrowserRouter, Route } from 'react-router-dom';
 
 const AdminHome = () => {
@@ -20,17 +23,17 @@ const AdminHome = () => {
                         </div>
                     </div>
 
-                     {/* <ToastContainer
-                position="bottom-right"
-                autoClose={1500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            /> */}
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={1500}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
                 </div>
             )
 
