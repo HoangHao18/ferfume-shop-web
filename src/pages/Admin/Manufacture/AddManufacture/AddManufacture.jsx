@@ -101,7 +101,6 @@ function AddManufacture() {
                 //console.log("status",status)
                 setFormData({
                     name: '',
-                    description: '',
                     phone: '',
                     email: '',
                     address: '',

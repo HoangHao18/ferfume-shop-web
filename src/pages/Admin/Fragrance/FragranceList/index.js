@@ -28,7 +28,7 @@ export default function Fragrance(){
     let history = useHistory();
     const handleDelete = (fragranceId) => {
         if(window.confirm("Are you sure wanted to delete the fragrance?")){
-            //dispatch(deleteFragranceAsync(fragranceId));
+            dispatch(deleteFragranceAsync(fragranceId));
         }
     }
     const handleEdit = (fragranceId) => {
