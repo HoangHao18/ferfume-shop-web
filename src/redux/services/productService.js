@@ -2,9 +2,10 @@ import apiClient from "../api/apiClient";
 
 export const ProductService = {
     getAllProducts: () => apiClient().get("product/"),
+    createProduct: (data) => apiClient().post("product/", data),
+    getSingleProduct: (id) => apiClient().get(`/product/${id}`),
+
     getImagesProduct: (id) => apiClient().get(`/product/${id}/list-image`),
-    createProduct: ({ name, email, phone, address, description }) => apiClient().post("product/", { name, email, phone, address, description }),
     deleteProduct: (productId) => apiClient().delete(`/product/${productId}`),
-    getSingleProduct: (productId) => apiClient().get(`/product/${productId}`),
-    editProduct: ({ id, name, email, phone, address, description }) => apiClient().put(`/product/${id}`, { id, name, email, phone, address, description }),
+    editProduct: (id, data) => apiClient().put(`/product/${id}`, data),
 }

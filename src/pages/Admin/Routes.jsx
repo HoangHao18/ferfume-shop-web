@@ -18,6 +18,8 @@ import EditFragrance from './Fragrance/EditFragrance/EditFragrance';
 import AddManufacture from './Manufacture/AddManufacture/AddManufacture';
 import EditManufacture from './Manufacture/EditManufacture/EditManufacture';
 import Product from './Product/ProductList';
+import AddProduct from './Product/AddProduct/AddProduct';
+import EditProduct from './Product/EditProduct/EditProduct'
 // import EditUser from './Edit/User/EditUser';
 // import Manufacture from '../../page/Admin/Manufacture';
 // import AddManufacture from './AddNew/Manufacture/AddManufacture';
@@ -48,13 +50,10 @@ import Product from './Product/ProductList';
             <Route path='/admin/manufactures/:id' component={EditManufacture}/>
 
             <Route exact path='/admin/products' component={Product}/>
-
+            <Route path='/admin/products/new-product' component={AddProduct}/>
+            <Route path='/admin/products/:id' component={EditProduct}/>
 
             {/*<Route path='/admin/editUser/:id' component={EditUser}/>
-           
-            
-            <Route path='/admin/products/addProduct' component={AddProduct}/>
-            <Route path='/admin/products/editProduct/:id' component={EditProduct}/>
         
             <Route exact path='/admin/orders' component={Order}/>
             <Route path='/admin/orders/editOrder/:id' component={EditOrder}/> */}

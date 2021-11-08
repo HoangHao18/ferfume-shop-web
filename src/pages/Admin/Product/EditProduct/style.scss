@@ -6,7 +6,7 @@ $height-address-box: 120px;
 $height-address-box: 140px;
 
 
-.add-product-container{
+.edit-product-container{
     width: 90%;
     margin: 15px 0;
     //border: 2px rgb(107, 101, 101) solid;
@@ -193,7 +193,7 @@ $height-address-box: 140px;
                 border: none;
                 padding: 3px 8px 6px 8px;
                 margin-top: 10px;
-               // margin-left: 42px;
+                margin-left: 42px;
                 border: solid 1px #ced4da;
                 border-radius: 3px;
                 transition: all 0.5s;

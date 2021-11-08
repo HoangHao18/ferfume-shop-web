@@ -188,7 +188,7 @@ function AddManufacture() {
                                         value={formData.description}
                                         onChange={handleChangeFormData('description')}
                                     />
-                                    {formValidError.description && <label className="label-error">{formValidError.description}</label>}
+                                    {/* {formValidError.description && <label className="label-error">{formValidError.description}</label>} */}
                                 </div>
                             </div>
                         </div>

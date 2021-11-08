@@ -26,8 +26,8 @@ export default function Product(){
             //dispatch(deleteProductAsync(productId));
         }
     }
-    const handleEdit = (productId) => {
-        //history.push(`/admin/editproduct/${productId}`);
+    const handleEdit = (id) => {
+        history.push(`/admin/products/${id}`);
     }
 
     const [currIndexStart, setCurrIndexStart] = useState(0);
@@ -68,8 +68,8 @@ export default function Product(){
                 </div>
             </td>
             <td>
-                <span onClick={()=>handleEdit(item._id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
-                <span onClick={()=>handleDelete(item._id)}> <i class='bx bx-trash iconDelete'></i></span>
+                <span onClick={()=>handleEdit(item.id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
+                <span onClick={()=>handleDelete(item.id)}> <i class='bx bx-trash iconDelete'></i></span>
             </td>
         </tr>
     )
@@ -79,7 +79,7 @@ export default function Product(){
             <h2 className="page-header">Product</h2>
             {/* <AddUser/> */}
             <ToolTable
-                linkAdd = "/admin/products/addProduct"
+                linkAdd = "/admin/products/new-product"
             />
             <div className="row">
                 <div className="col-12">
