@@ -74,6 +74,13 @@ $height-address-box: 140px;
                 }
                 
             } 
+            .form-control.capacity{
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+                }
+            }
 
             .btn-left{
                 width: 50%;
@@ -174,7 +181,10 @@ $height-address-box: 140px;
 
             
         }
-
+        .form-group.ml{
+            padding-top: 56px;
+            margin-left: -20px;
+        }
         .form-group.last{
             margin-top: 40px;
         }

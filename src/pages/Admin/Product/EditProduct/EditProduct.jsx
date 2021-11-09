@@ -80,7 +80,7 @@ function EditProduct() {
         fragrances: [],
         manufacture: null,
         images: [],
-        capacity: '',
+        capacity: 0,
         description: '', 
         imagesadd: []
     })
@@ -259,7 +259,7 @@ function EditProduct() {
         if (!formD.manufacture) {
             err.manufacture = "Manufacture is required."
         } 
-        if (!formD.capacity) {
+        if (!formD.capacity || formD.capacity == 0) {
             err.capacity = "Capacity is required."
         } 
         if (formData.images.length == 0 && fileImgPost.length == 0) {
@@ -449,12 +449,15 @@ function EditProduct() {
                             <div className="col-2">
                                 <div className="form-group">
                                     <label className="label">Capacity</label>
-                                    <input id="capacity" type="text" className="form-control" placeholder=" "
+                                    <input id="capacity" type="number" className="form-control capacity" placeholder=" "
                                         value={formData.capacity}
                                         onChange={handleChangeFormData('capacity')}
                                     />
                                     {formValidError.capacity && <label className="label-error">{formValidError.capacity}</label>}
                                 </div>
+                            </div>
+                            <div className="col-2">
+                                <div className="form-group ml">(ml)</div>
                             </div>
                         </div>
 

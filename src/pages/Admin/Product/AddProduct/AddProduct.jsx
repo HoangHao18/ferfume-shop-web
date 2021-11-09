@@ -152,7 +152,7 @@ function AddProduct() {
         fragrances: [],
         manufacture: '',
         images: [],
-        capacity: '',
+        capacity: 0,
         description: '', 
         
     })
@@ -209,7 +209,7 @@ function AddProduct() {
         if (!formD.manufacture) {
             err.manufacture = "Manufacture is required."
         } 
-        if (!formD.capacity) {
+        if (!formD.capacity || formD.capacity == 0) {
             err.capacity = "Capacity is required."
         } 
         if (urlSelectedImages.length === 0) {
@@ -269,7 +269,7 @@ function AddProduct() {
                     fragrances: [],
                     manufacture: '',
                     images: [],
-                    capacity: '',
+                    capacity: 0,
                     description: '', 
                 })
                 setUrlSelectedImages([]);
@@ -383,12 +383,15 @@ function AddProduct() {
                             <div className="col-2">
                                 <div className="form-group">
                                     <label className="label">Capacity</label>
-                                    <input id="capacity" type="text" className="form-control" placeholder=" "
+                                    <input id="capacity" type="number" className="form-control capacity" placeholder=" "
                                         value={formData.capacity}
                                         onChange={handleChangeFormData('capacity')}
                                     />
                                     {formValidError.capacity && <label className="label-error">{formValidError.capacity}</label>}
                                 </div>
+                            </div>
+                            <div className="col-2">
+                                <div className="form-group ml">(ml)</div>
                             </div>
                         </div>
 
