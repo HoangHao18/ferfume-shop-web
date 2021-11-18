@@ -29,7 +29,8 @@ const customStylesSelect = {
 
 
 export default function SelectAddress({
-  addressChoose
+  getAddressChoose,
+  eng = false
 }) {
   const [cityList, setCityList] = useState([]);
   const [districtList, setDistrictList] = useState([]);
@@ -38,6 +39,7 @@ export default function SelectAddress({
   const [cityChoose, setCityChoose] = useState(null);
   const [districtChoose, setDistrictChoose] = useState(null);
   const [wardChoose, setWardChoose] = useState(null);
+
 
   useEffect(() => {
     fetch('/assets/json/locations/cities.json', {
@@ -92,6 +94,15 @@ export default function SelectAddress({
     //   "ward": wardChoose,
     // }
     // console.log(addressChoose)
+    if(cityChoose && districtChoose && wardChoose){
+      getAddressChoose({
+        city: cityChoose.label,
+        district: districtChoose.label,
+        ward: wardChoose.label
+      })
+    }
+    
+    
   }, [wardChoose]);
 
   const handleChangeCity = (option) => {
@@ -118,7 +129,9 @@ export default function SelectAddress({
       <div className="row-hh">
         <div className="col-4">
           <div className="form-group">
-            <label className="label">Tỉnh/TP</label>
+            {
+              eng ? <label className="label">Province/city</label> : <label className="label">Tỉnh/TP</label> 
+            }
             <Select options={cityList}
               className="select-hh"
               key={`cityId_${cityChoose?.value}`}
@@ -134,7 +147,9 @@ export default function SelectAddress({
 
         <div className="col-4">
           <div className="form-group">
-            <label className="label">Quận/Huyện</label>
+            {
+              eng ? <label className="label">District</label> : <label className="label">Quận/Huyện</label> 
+            }
             <Select options={districtList}
               isDisabled={districtList.length === 0}
               key={`districtId_${districtChoose?.value}`}
@@ -153,7 +168,9 @@ export default function SelectAddress({
 
         <div className="col-4">
           <div className="form-group">
-            <label className="label">Phường/Xã</label>
+           {
+              eng ? <label className="label">Ward/Commune</label> : <label className="label">Phường/Xã</label> 
+            }
             <Select options={wardList}
               isDisabled={wardList.length === 0}
               key={`wardId_${wardChoose?.value}`}

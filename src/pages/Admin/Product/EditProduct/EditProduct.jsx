@@ -160,6 +160,7 @@ function EditProduct() {
         delete newImgPost[index]
         console.log("splice newImgPost:",newImgPost)
         setFileImgPost(newImgPost) ; 
+        
     }
 
 
@@ -197,6 +198,7 @@ function EditProduct() {
 
 
       useEffect(() => {
+        console.log("fileImgPost:",fileImgPost)
         setFormData({
             ...formData,
             imagesadd: fileImgPost
@@ -262,7 +264,10 @@ function EditProduct() {
         if (!formD.capacity || formD.capacity == 0) {
             err.capacity = "Capacity is required."
         } 
-        if (formData.images.length == 0 && fileImgPost.length == 0) {
+        // if (formData.images.length == 0 && fileImgPost.length == 0) {
+        //     err.images = "Images is required."
+        // } 
+        if (formData.images.length == 0 && urlSelectedImages.length == 0) {
             err.images = "Images is required."
         } 
         //console.log("mmm", err)

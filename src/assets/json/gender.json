@@ -8,11 +8,6 @@
         "icon": "bx bx-female-sign",
         "id": 0,
         "name": "Nữ"
-    },
-    {
-        "icon": "bx bx-diamond",
-        "id": 3,
-        "name": "Khác"
     }
-   
 ]
+

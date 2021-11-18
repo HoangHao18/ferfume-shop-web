@@ -19,7 +19,10 @@ import AddManufacture from './Manufacture/AddManufacture/AddManufacture';
 import EditManufacture from './Manufacture/EditManufacture/EditManufacture';
 import Product from './Product/ProductList';
 import AddProduct from './Product/AddProduct/AddProduct';
-import EditProduct from './Product/EditProduct/EditProduct'
+import EditProduct from './Product/EditProduct/EditProduct';
+import Employee from './Employee/EmployeeList';
+import AddEmployee from './Employee/AddEmployee/AddEmployee';
+import EditEmployee from './Employee/EditEmployee/EditEmployee';
 // import EditUser from './Edit/User/EditUser';
 // import Manufacture from '../../page/Admin/Manufacture';
 // import AddManufacture from './AddNew/Manufacture/AddManufacture';
@@ -36,6 +39,10 @@ import EditProduct from './Product/EditProduct/EditProduct'
             <Route  exact path='/' component={Home}/>
             <Route  exact path='/admin' component={User}/>
             <Route  path='/admin/addUser' component={AddUser}/>
+
+            <Route exact path='/admin/employees' component={Employee}/>
+            <Route path='/admin/employees/new-employee' component={AddEmployee}/>
+            <Route path='/admin/employees/:id' component={EditEmployee}/>
 
             <Route exact path='/admin/categories' component={Category}/>
             <Route path='/admin/categories/new-category' component={AddCategory}/>

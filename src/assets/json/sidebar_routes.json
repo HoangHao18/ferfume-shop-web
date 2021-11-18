@@ -8,6 +8,13 @@
         "route_type": "user"
     },
     {
+        "display_name": "Employee",
+        "route": "/admin/employees",
+        "icon": "bx bx-user-pin",
+        "route_child": ["/admin/new-employee"],
+        "route_type": "employees"
+    },
+    {
         "display_name": "Products",
         "route": "/admin/products",
         "icon": "bx bx-package",
