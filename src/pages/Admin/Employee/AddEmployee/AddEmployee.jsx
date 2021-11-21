@@ -227,7 +227,7 @@ function AddEmployee() {
 
     let history = useHistory();  
     const handleCancel = () => {
-        history.push("/admin/emloyee");
+        history.push("/admin/employees");
     }
 
     const setAddessChoose = (data)=>{

@@ -36,7 +36,7 @@ function AddManufacture() {
     }
 
     useEffect(() => {
-        //console.log("kkk22: ", formData); //note
+        console.log("kkk22: ", formData); //note
         setFomValidError(checkValidateInput(formData));
     }, [formData]);
 
@@ -91,6 +91,7 @@ function AddManufacture() {
         if (!isValidForm) return;
 
         console.log("check valid")
+        console.log("check valid", formData)
         
         dispatch(createManufactureAsync(formData))
         .then(res => {

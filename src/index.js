@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import store from './redux/store';
 
+import { CookiesProvider } from 'react-cookie';
 // import './assets/scss/reset-css.scss';
 // import './assets/scss/grid.scss';
 // import './assets/scss/variables.scss';
@@ -14,9 +15,11 @@ import store from './redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-        <App />
-    </Provider>
+    <CookiesProvider>
+      <Provider store={store}>
+          <App />
+      </Provider>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

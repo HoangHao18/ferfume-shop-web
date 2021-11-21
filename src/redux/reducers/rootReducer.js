@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import authReducers from './authReducer';
 
 import categoryReducers from './categoryReducer';
 import employeeReducers from './employeeReducer';
@@ -9,7 +10,7 @@ import roleReducers from './roleReducer';
 
 const rootReducer = combineReducers({
     // users: userReducers,
-    // auth: authReducers,
+    auth: authReducers,
     categories: categoryReducers,
     fragrances: fragranceReducers,
     manufactures: manufactureReducers,

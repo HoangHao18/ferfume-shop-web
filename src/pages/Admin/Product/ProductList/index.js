@@ -62,6 +62,7 @@ export default function Product(){
             <td>
                 <div className="img-product">
                     {
+                        item.images &&
                         (item.images.length > 0) ? <img src = {process.env.REACT_APP_API_IMG + item.images[0].path} alt=""></img> :
                         <img src = "/assets/images/avatarDefault.png" alt=""></img>
                     }     
