@@ -19,6 +19,24 @@ export const getListProductsAsync = () => (dispatch) => {
         });
 }
 
+//get list by id manufacture
+const getProductByManufactureId = (productList) => ({
+    type: actionStypes.PRODUCT_GET_LIST_BY_MANUFACTURE_ID,
+    payload: productList,
+
+})
+
+export const getProductByManufactureIdAsync = (id) => (dispatch) => {
+        ProductService.getProductByManufactureId(id)
+        .then(response => {
+            console.log("response: ", response);
+            dispatch(getProductByManufactureId(response.data.reverse()));
+        })
+        .catch((error) => {
+            console.log("error: ",error);
+        });
+}
+
 //create
 const createProduct = () => ({
     type: actionStypes.PRODUCT_CREATE_NEW,

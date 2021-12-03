@@ -160,7 +160,7 @@ function AddEmployee() {
         }
         console.log("mmm", err)
 
-        if (err.name || err.phone || err.password || err.email || err.addressNo) {
+        if (err.name || err.phone || err.password || err.email || err.addressNo || err.gender) {
             setIsValidForm(false)
             //err.isValidForm = false;
             console.log("vao falsse")

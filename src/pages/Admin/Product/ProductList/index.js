@@ -52,7 +52,7 @@ export default function Product(){
             <td>{item.id}</td>
             <td>{item.name}</td>
             <td><NumberFormat value={item.price} displayType={'text'} thousandSeparator={true} /> VND</td>
-            <td><NumberFormat value={item.costprice} displayType={'text'} thousandSeparator={true} /> VND</td>
+            <td><NumberFormat value={item.cost} displayType={'text'} thousandSeparator={true} /> VND</td>
             <td><NumberFormat value={item.number} displayType={'text'} thousandSeparator={true} /></td>
             <td>{item.category.name}</td>
             <td>{item.manufacture.name}</td>
@@ -86,6 +86,7 @@ export default function Product(){
                 <div className="col-12">
                     <div className="card">
                         <div className="card__body">
+                        {console.log("aaaaa: ", productList)}
                             {
                                 isLoading ? <div>Loading...</div> : 
                                 (productList && productList.length > 0) ? <div>

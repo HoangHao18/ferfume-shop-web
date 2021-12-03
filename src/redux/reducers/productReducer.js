@@ -17,6 +17,12 @@ function productReducers(state = initialState, action) {
                 productList: action.payload,
                 isLoading: false,
             }
+        case actionTypes.PRODUCT_GET_LIST_BY_MANUFACTURE_ID:
+            return{
+                ...state,
+                productList: action.payload,
+                isLoading: false,
+            }
         case actionTypes.PRODUCT_DELETE_BY_ID:
             return{
                 ...state,

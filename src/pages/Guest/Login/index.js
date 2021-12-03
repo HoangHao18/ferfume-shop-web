@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { loginAsync } from '../../../redux/actions/authAction';
 import { useCookies } from 'react-cookie';
+import jwt_decode from "jwt-decode";
+
 export default function Login(){
 
     const [ClientId,    setClientId]    = useCookies(['Client']);
@@ -50,6 +52,8 @@ export default function Login(){
                 // localStorage.setItem("userCurrent", JSON.stringify(res.userCurrent));
                 // localStorage.setItem("isLogin", true);
                 setAccessToken("X-Auth-Token", res.currentUser.token)
+                var decoded = jwt_decode(res.currentUser.token);
+                console.log(decoded);
                 if(res.currentUser.roles[0] === "Admin" || res.currentUser.roles[0] === "Saler"){
                     history.push('/admin');
                 }else if(res.currentUser.roles[0] === "Customer"){

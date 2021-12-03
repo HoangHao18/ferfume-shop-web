@@ -23,22 +23,20 @@ import EditProduct from './Product/EditProduct/EditProduct';
 import Employee from './Employee/EmployeeList';
 import AddEmployee from './Employee/AddEmployee/AddEmployee';
 import EditEmployee from './Employee/EditEmployee/EditEmployee';
-// import EditUser from './Edit/User/EditUser';
-// import Manufacture from '../../page/Admin/Manufacture';
-// import AddManufacture from './AddNew/Manufacture/AddManufacture';
-// import EditManufacture from './Edit/Manufacture/EditManufacture';
-// import AddProduct from './AddNew/Product/AddProduct';
-// import EditProduct from './Edit/Product/EditProduct';
-// import Order from '../../page/Admin/Order';
-//import EditOrder from './Edit/Order/EditOrder';
-
+import Customer from './Customer/CustomerList';
+import ImportNote from './ImportNote/ImportNoteList';
+import ImportNoteDetail from './ImportNote/ImportNoteDetail/ImportNoteDetail';
+import EditImportNote from './ImportNote/EditImportNote/EditImportNote';
+import AddImportNote from './ImportNote/AddImportNote/AddImportNote';
 
  function Routes(){
     return(
         <Switch>
             <Route  exact path='/' component={Home}/>
-            <Route  exact path='/admin' component={User}/>
-            <Route  path='/admin/addUser' component={AddUser}/>
+            {/* <Route  exact path='/admin' component={User}/>
+            <Route  path='/admin/addUser' component={AddUser}/> */}
+
+            <Route  exact path='/admin' component={Customer}/>
 
             <Route exact path='/admin/employees' component={Employee}/>
             <Route path='/admin/employees/new-employee' component={AddEmployee}/>
@@ -59,6 +57,12 @@ import EditEmployee from './Employee/EditEmployee/EditEmployee';
             <Route exact path='/admin/products' component={Product}/>
             <Route path='/admin/products/new-product' component={AddProduct}/>
             <Route path='/admin/products/:id' component={EditProduct}/>
+
+            <Route exact path='/admin/import-note' component={ImportNote}/>
+            <Route exact path='/admin/import-note/new-import-note' component={AddImportNote}/>
+            <Route exact path='/admin/import-note/detail/:id' component={ImportNoteDetail}/>
+            <Route exact path='/admin/import-note/:id' component={EditImportNote}/>
+
 
             {/*<Route path='/admin/editUser/:id' component={EditUser}/>
         

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom'
 import './style.scss'
 import vari from '../../../assets/scss/vari.module.scss';
@@ -10,6 +11,7 @@ import gender_items from '../../../assets/json/gender.json';
 
 import LogResBgPage from '../../../components/share/LogResBgPage';
 import SelectAddress from '../../../components/share/SelectAddress';
+import { registerAsync } from '../../../redux/actions/authAction';
 
 const customStylesSelect = {
     option: (provided, state) => ({
@@ -36,23 +38,19 @@ const customStylesSelect = {
   }
 
 export default function Register(){
-    const options = [
-        { value: 'Nam', label: 'Nam' },
-        { value: 'Nữ', label: 'Nữ' },
-        { value: 'Khác', label: 'Khác' }
-      ]
+    const genderOptions = gender_items.map(({ id, name }) => ({ value: id, label: name }));
       
-
     const [formData, setFormData] = useState({
         name: '',
-        gender: gender_items && gender_items.length > 0 ? gender_items[0].name : '',
+        //gender: gender_items && gender_items.length > 0 ? gender_items[0].name : '',
         phone: '',
         password: '',
         email: '',
-        role: "guest",
-        active: true,
-        address: '',
-        image: ''
+        //role: 1,
+        gender: null,
+        addressNo: '',
+        cdw: '',
+        //image: ''
     })
     const [formValidError, setFomValidError] = useState({
         name: '',
@@ -60,21 +58,29 @@ export default function Register(){
         phone: '',
         password: '',
         email: '',
-        role: '',
-        active: '',
-        address: '',
-        image: ''
+        //role: '',
+        addressNo: '',
+        //image: ''
     })
     const [isValidForm, setIsValidForm] = useState(false);
-    const [previewImgURL, setPreviewImgURL] = useState('');
+    //const [previewImgURL, setPreviewImgURL] = useState('');
     
     function handleChangeFormData(key){ 
-        return(evt) => {   
+        if (key === 'gender'){
+            return (value) =>{
+                setFormData({
+                    ...formData,
+                    [key]: value
+                })
+            }
+        }
+
+        return (evt) => {
             setFormData({
                 ...formData,
                 [key]: evt.target.value
             })
-            console.log("kkk: ",formData); //note
+            console.log("kkk: ", formData); //note
         }
     }
 
@@ -84,27 +90,29 @@ export default function Register(){
     },[formData]);
 
    
-    const handleOnChangeImage = (event) => {
-        let dataFile = event.target.files;
-        let file = dataFile[0];
-        if(file){
-            //let objectUrl = URL.createObjectURL(file);
-            let objectUrl = URL.createObjectURL(file)
-            setPreviewImgURL(objectUrl);
-        }
-        setFormData({
-            ...formData,
-            image: file
-        })
+    //img
+    // const handleOnChangeImage = (event) => {
+    //     let dataFile = event.target.files;
+    //     let file = dataFile[0];
+    //     if(file){
+    //         //let objectUrl = URL.createObjectURL(file);
+    //         let objectUrl = URL.createObjectURL(file)
+    //         setPreviewImgURL(objectUrl);
+    //     }
+    //     setFormData({
+    //         ...formData,
+    //         image: file
+    //     })
         
-    }
+    // }
+    //end img
 
     function checkValidateInput(formD){
         let err = {}
         if(!formD.name){
             err.name= "Tên là bắt buộc."
         } else if(formD.name.length < 3){
-            err.name = "Name must be more than 3 characters."
+            err.name = "Tên tối thiểu 3 ký tự!"
         }
         if(!formD.phone){
             err.phone = "Số điện thoại là bắt buộc."
@@ -114,19 +122,22 @@ export default function Register(){
         if(!formD.password){
             err.password = "Mật khẩu là bắt buộc."
         } else if(formD.password.length < 6){
-            err.password = "Mật khẩu phải lớn hơn 6 ký tự."
+            err.password = "Mật khẩu tối thiểu 6 ký tự!"
         }
         if(!formD.email){
             err.email = "Email là bắt buộc."
         } else if(!/\S+@\S+\.\S+/.test(formD.email)){
             err.email = "Email chưa hợp lệ."
         }
-        if(!formD.address){
-            err.address = "Địa chỉ là bắt buộc."
+        if (!formD.gender) {
+            err.gender = "Mời chọn giới tính!"
         } 
+        if (!formD.addressNo) {
+            err.addressNo = "Số nhà/thôn/xóm là bắt buộc."
+        }
         console.log("mmm",err)
 
-         if(err.name || err.phone || err.password || err.email || err.address) {
+         if(err.name || err.phone || err.password || err.email || err.gender || err.addressNo) {
             setIsValidForm(false)
             //err.isValidForm = false;
             console.log("vao falsse")
@@ -140,7 +151,7 @@ export default function Register(){
 
     }
 
-    // let dispatch = useDispatch();
+    let dispatch = useDispatch();
     // const errResponse = useSelector((state) => state.users.errResponse);
     // const status = useSelector((state) => state.users.status);
    
@@ -152,50 +163,41 @@ export default function Register(){
         console.log("check valid")
         //dispatch(createUserAsync(formData));
 
-        const data = new FormData();
-        data.append("name", formData.name);
-        data.append("email", formData.email);
-        data.append("password", formData.password);
-        data.append("gender", formData.gender);
-        data.append("phone", formData.phone);
-        data.append("role", formData.role);
-        data.append("active", formData.active);
-        data.append("address", formData.address);
-        data.append("image", formData.image);
+        // const data = new FormData();
+        // data.append("name", formData.name);
+        // data.append("email", formData.email);
+        // data.append("password", formData.password);
+        // data.append("gender", formData.gender);
+        // data.append("phone", formData.phone);
+        // data.append("role", formData.role);
+        // data.append("active", formData.active);
+        // data.append("address", formData.address);
+        // data.append("image", formData.image);
         //axios.post("https://httpbin.org/anything", data).then(res => console.log(res)).catch(err => console.log(err));
         
-        // const cb = ()=>{
-        //     console.log("check call back")
-        //     console.log("errResponse cb",errResponse)
-        //     console.log("status cb",status)
-        //     console.log("bb",bb);
-        // }
-        
-        // dispatch(createUserAsync(data))
-        // .then(res => {
-        //     console.log("ok: ",res.ok )
-        //     if (res.ok) {
-        //       // Thành công
-        //         console.log("errResponse",errResponse)
-        //         console.log("status",status)
-        //         setFormData({
-        //             name: '',
-        //             gender: gender_items && gender_items.length > 0 ? gender_items[0].name : '',
-        //             phone: '',
-        //             password: '',
-        //             email: '',
-        //             role: "guest",
-        //             active: true,
-        //             address: '',
-        //             image: ''
-        //         })
-        //         setPreviewImgURL('');
-        //         history.push("/login")
-        //     } else {
-        //       // Thất bại
-        //       console.log("status",status)
-        //     }
-        // });
+        dispatch(registerAsync({...formData, gender: formData.gender.value, address: formData.addressNo + ", "+ formData.cdw}))
+        .then(res => {
+            console.log("ok: ",res.ok )
+            if (res.ok) {
+              // Thành công
+                //console.log("errResponse",errResponse)
+                //console.log("status",status)
+                setFormData({
+                    name: '',
+                        gender: null,
+                        phone: '',
+                        password: '',
+                        email: '',          
+                        addressNo: '',
+                        image: ''
+                })
+                //setPreviewImgURL('');
+                history.push("/login")
+            } else {
+              // Thất bại
+              //console.log("status",status)
+            }
+        });
      }
 
      let history = useHistory();
@@ -203,6 +205,14 @@ export default function Register(){
         // history.push("/admin/users");
         history.push("/");
      }
+
+     const setAddessChoose = (data)=>{
+        console.log("cdw: ",data)
+        setFormData({
+            ...formData,
+            cdw:  data.ward + ", " + data.district + ", " + data.city
+        })
+    }
 
     return(
         <div className="register-container">
@@ -226,29 +236,16 @@ export default function Register(){
                                 <div className="col-4">
                                     <div className="form-group">
                                         <label className="label">Giới tính</label>
-                                        <Select options={options}
+                                        <Select options={genderOptions}
                                             className="select-hh"
-                                            defaultValue={options[0]}
+                                            defaultValue={genderOptions[0]}
                                             placeholder="Giới tính"
                                             menuColor = "red"
                                             styles={customStylesSelect}
-                                            // value={formData.gender} 
-                                            // onChange={handleChangeFormData('gender')} 
-                                        />
-                                        {/* <select className="form-control"
                                             value={formData.gender} 
                                             onChange={handleChangeFormData('gender')} 
-                                        >
-                                            {gender_items && gender_items.length > 0 &&
-                                                gender_items.map((item, index) => {
-                                                    return(
-                                                        <option className="select-item" key={index}>{item.name}
-                                                        </option>
-                                                        
-                                                    )
-                                                })
-                                            }
-                                        </select> */}
+                                        />
+    
                                     </div>
                                 </div>
                             </div>
@@ -290,21 +287,24 @@ export default function Register(){
                             </div>
 
                             <div className="">
-                                <SelectAddress/>
+                                <SelectAddress
+                                    eng={true}
+                                    getAddressChoose={setAddessChoose}
+                                />
                             </div>
 
                             <div className="row-hh">
-                                <div className="col-8">
+                                <div className="col-12">
                                     <div className="form-group ">
                                         <label className="label">Số nhà/ thôn</label>
-                                        <textarea type="text"  className="form-control address-user" placeholder=" "
-                                            value={formData.address} 
-                                            onChange={handleChangeFormData('address')} 
+                                        <textarea type="text" className="form-control addressNo-user" placeholder=" "
+                                            value={formData.addressNo}
+                                            onChange={handleChangeFormData('addressNo')}
                                         />
-                                        { formValidError.address &&  <label className="label-error">{formValidError.address}</label> }
+                                        {formValidError.addressNo && <label className="label-error">{formValidError.addressNo}</label>}
                                     </div>
                                 </div>
-                                <div className="col-4">
+                                {/* <div className="col-4">
                                     <div className="form-group avatar-input">
                                         <label className="label" name="image">Ảnh đại diện</label>
                                         <div className="preview-img"><img src={previewImgURL} alt=""></img></div> 
@@ -312,7 +312,7 @@ export default function Register(){
                                         <label className="form-control choose-img" htmlFor="image"><i class='bx bx-image-add icon-choose-img'></i>Chọn ảnh</label>
                                                                                                               
                                     </div>
-                                </div>      
+                                </div>       */}
                             </div>
 
                             <div className="form-group last">

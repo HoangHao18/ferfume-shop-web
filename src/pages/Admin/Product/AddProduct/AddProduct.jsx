@@ -153,6 +153,7 @@ function AddProduct() {
         manufacture: '',
         images: [],
         capacity: 0,
+        price: 0,
         description: '', 
         
     })
@@ -163,6 +164,7 @@ function AddProduct() {
         manufacture: '',
         images: '',
         capacity: '',
+        price: '',
         description: '', 
     })
     const [isValidForm, setIsValidForm] = useState(false);
@@ -212,12 +214,15 @@ function AddProduct() {
         if (!formD.capacity || formD.capacity == 0) {
             err.capacity = "Capacity is required."
         } 
+        if (!formD.price || formD.price == 0) {
+            err.capacity = "Capacity is required."
+        } 
         if (urlSelectedImages.length === 0) {
             err.images = "Images is required."
         } 
         //console.log("mmm", err)
 
-        if (err.name || err.fragrances || err.manufacture || err.capacity || err.images) {
+        if (err.name || err.fragrances || err.manufacture || err.capacity || err.images || err.price) {
             setIsValidForm(false)
             //err.isValidForm = false;
             //console.log("vao falsse")
@@ -248,6 +253,7 @@ function AddProduct() {
         data.append("manufactureId", formData.manufacture.value);
         data.append("description", formData.description);
         data.append("capacity", formData.capacity);
+        data.append("price", formData.price)
         
         for (const key of Object.keys(formData.fragrances)) {
             data.append("idFragranceList", formData.fragrances[key].value)
@@ -270,6 +276,7 @@ function AddProduct() {
                     manufacture: '',
                     images: [],
                     capacity: 0,
+                    price: 0,
                     description: '', 
                 })
                 setUrlSelectedImages([]);
@@ -390,8 +397,22 @@ function AddProduct() {
                                     {formValidError.capacity && <label className="label-error">{formValidError.capacity}</label>}
                                 </div>
                             </div>
-                            <div className="col-2">
+                            <div className="col-1">
                                 <div className="form-group ml">(ml)</div>
+                            </div>
+
+                            <div className="col-4">
+                                <div className="form-group">
+                                    <label className="label">Price</label>
+                                    <input id="price" type="number" className="form-control capacity" placeholder=" "
+                                        value={formData.price}
+                                        onChange={handleChangeFormData('price')}
+                                    />
+                                    {formValidError.price && <label className="label-error">{formValidError.price}</label>}
+                                </div>
+                            </div>
+                            <div className="col-2">
+                                <div className="form-group ml">VND</div>
                             </div>
                         </div>
 

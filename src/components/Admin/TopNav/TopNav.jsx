@@ -1,5 +1,5 @@
 import React  from 'react'
-//import { useHistory } from 'react-router'
+import { useHistory } from 'react-router'
 import './topnav.scss'
 import Dropdown from '../Dropdown/Dropdown'
 
@@ -8,6 +8,12 @@ import user_menu from '../../../assets/json/user_menus.json';
 //import { Link } from 'react-router-dom'
 // import { useSelector, useDispatch } from 'react-redux'
 // import { loginCheckLocalAsync, logout } from '../../../redux/actions/authAction'
+
+import { useDispatch, useSelector } from 'react-redux'
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
+import jwt_decode from "jwt-decode";
+import { loginCheckLocalAsync, logout } from '../../../redux/actions/authAction';
 
 //console.log("dday nheeeeeeeee: ",curr_user.name)
 // const renderUserToggle = (user) =>(
@@ -32,7 +38,7 @@ const renderUserToggle = (user) =>(
             }    
         </div>
         <div className="topnav__right-user__name">
-            {user.name}
+            {user.email}
         </div>
     </div>
 )
@@ -40,43 +46,31 @@ const renderUserToggle = (user) =>(
 
 
 const TopNav = () => {
+    const isLogin = useSelector((state) => state.auth.isLogin);
+    const userCurrent = useSelector(state => state.auth.currentUser); 
 
-    // const curr_user = localStorage.getItem("userCurrent") ?  JSON.parse(localStorage.getItem("userCurrent")) : {
-    //     name: "",
-    //     image: "",
-    
+    // const userCurrent = {
+    //     "name": "Oggy",
+    //     "image": ""
     // }
-
-    //const userCurrent = useSelector((state) => state.auth.userCurrent)
-    const userCurrent = {
-        "name": "Oggy",
-        "image": ""
-    }
      //kt render
-
-    //  useEffect(()=>{
-    //     if(localStorage.getItem("isLogin") === "true"){
-    //         dispatch(loginCheckLocalAsync(localStorage.getItem("userCurrentId")))
-    //     }
-    // },[])
-
-    // const curr_user =  userCurrent ?  userCurrent : {
-    //     name: "",
-    //     image: "",
-    
-    // }
+    useEffect(()=>{   
+        if(Cookies.get('X-Auth-Token')){
+            const decoded = jwt_decode(Cookies.get('X-Auth-Token'));
+            dispatch(loginCheckLocalAsync())
+            //dispatch(loginCheckLocalAsync(localStorage.getItem("userCurrentId")))
+        }
+    },[])
 
 
-    //let history = useHistory();
-    //let dispatch = useDispatch();
+    let history = useHistory();
+    let dispatch = useDispatch();
     const handleLogOut = () => {
-       // dispatch(logout());
-        // console.log("curren user nheeeeeeeeee: ",userCurrent)
+        Cookies.remove('X-Auth-Token')
+        //dispatch(saveCartAsync({id: userCurrent.id,cart: localStorage.getItem("cart")}))
+        dispatch(logout());
+        console.log("curren user nheeeeeeeeee: ",userCurrent,isLogin)
         window.location.href = "/"
-
-        localStorage.removeItem("userCurrentId");
-        localStorage.setItem("isLogin",false)
-        //history.push("/");
 
     }
     
@@ -89,29 +83,33 @@ const TopNav = () => {
 
             <div className="topnav_right">
                 <div className="topnav__right-item">
-                    <Dropdown
-                        // icon = 'bx bx-user' 
-                        customToggle={()=> renderUserToggle(userCurrent)} 
-                        contentData={user_menu}
-                        renderItems={
-                            <div>
-                                <div className="notification-item">
-                                    <i className='bx bx-user'></i>
-                                    <span>Profile</span>
+                    {
+                        userCurrent &&
+                        <Dropdown
+                            // icon = 'bx bx-user' 
+                            customToggle={()=> renderUserToggle(userCurrent)} 
+                            contentData={user_menu}
+                            renderItems={
+                                <div>
+                                    <div className="notification-item">
+                                        <i className='bx bx-user'></i>
+                                        <span>Profile</span>
+                                    </div>
+                            
+                                    <div className="notification-item">
+                                        <i className="bx bx-cog"></i>
+                                        <span>Settings</span>
+                                    </div>
+                            
+                                    <div className="notification-item" onClick={()=>handleLogOut()}>
+                                        <i className="bx bx-log-out-circle bx-rotate-180"></i>
+                                        <span>Logout</span>
+                                    </div>
                                 </div>
-                        
-                                <div className="notification-item">
-                                    <i className="bx bx-cog"></i>
-                                    <span>Settings</span>
-                                </div>
-                        
-                                <div className="notification-item" onClick={()=>handleLogOut()}>
-                                    <i className="bx bx-log-out-circle bx-rotate-180"></i>
-                                    <span>Logout</span>
-                                </div>
-                            </div>
-                        }
-                    />
+                            }
+                        />
+                    }
+                    
                 </div>
 
             </div>

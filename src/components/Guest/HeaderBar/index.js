@@ -1,14 +1,40 @@
 import './style.scss'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
+import jwt_decode from "jwt-decode";
+import { loginCheckLocalAsync, logout } from '../../../redux/actions/authAction';
 
 export default function HeaderBar(){
-    const isLogin = false;
-    const userCurrent = {
-        name: "Oggy",
-        id: 1,
-        image: " "
-    };
+    const isLogin = useSelector((state) => state.auth.isLogin);
+    const userCurrent = useSelector(state => state.auth.currentUser); 
+    // const userCurrent = {
+    //     name: "Oggy",
+    //     id: 1,
+    //     image: " "
+    // };
+
+    useEffect(()=>{   
+       console.log("nowwwwwwwwww: ",userCurrent)
+    },[userCurrent])
+    let dispatch = useDispatch();
+
+    // //kt render
+    // useEffect(()=>{
+    //     if(localStorage.getItem("isLogin") === "true"){
+    //         dispatch(loginCheckLocalAsync(localStorage.getItem("userCurrentId")))
+    //     }
+    // },[])
+
+     //get tt
+    useEffect(()=>{   
+        if(Cookies.get('X-Auth-Token')){
+            const decoded = jwt_decode(Cookies.get('X-Auth-Token'));
+            dispatch(loginCheckLocalAsync())
+            //dispatch(loginCheckLocalAsync(localStorage.getItem("userCurrentId")))
+        }
+    },[])
 
     //let history = useHistory();
     const handleOrdersOfUser = (userId) => {
@@ -16,7 +42,17 @@ export default function HeaderBar(){
     }
 
     const handleLogOut = () => {
+        Cookies.remove('X-Auth-Token')
+        //dispatch(saveCartAsync({id: userCurrent.id,cart: localStorage.getItem("cart")}))
+        dispatch(logout());
+        console.log("curren user nheeeeeeeeee: ",userCurrent,isLogin)
         window.location.href = "/"
+        
+        //console.log("localStorage.getItem cart",localStorage.getItem("cart"))
+        // localStorage.removeItem("userCurrentId", userCurrent.id);
+        // localStorage.setItem("isLogin",false)
+        // localStorage.removeItem("cart");
+        //history.push("/")
     }     
 
     return(
@@ -39,20 +75,20 @@ export default function HeaderBar(){
                 <Link to="/cart"><span className="icon-cart-2"><i class='bx bx-shopping-bag icon-2'></i></span></Link> 
 
                 {
-                    isLogin && userCurrent.name !==" "  ?
+                    isLogin  ?
                         <span className="icon-cart-2" onClick={()=>handleOrdersOfUser(userCurrent.id)}><i class='bx bx-detail icon-2'></i></span>
                     : ''
                 }
 
                 {
-                    isLogin && userCurrent.name !==" "  ?
+                    isLogin && userCurrent ?
                         <div className="info-user-current"> 
                             <span className="icon-logout-2" onClick={()=>handleLogOut()}><i class='bx bx-log-out-circle icon-2' ></i></span>  
                             {
                                 userCurrent.image && !(userCurrent.image===" ") ? <img alt="" src = {process.env.REACT_APP_API_IMG + userCurrent.image}></img> :
                                 <img alt="" src = "/assets/images/cat.png"></img>
                             }  
-                             <span className="iuc-name">{userCurrent.name}</span>
+                             <span className="iuc-name">{userCurrent.email}</span>
                         </div> 
                     : <Link to="/login"><span className="icon-login-2"><i class='bx bx-log-in-circle icon-2' ></i></span></Link>
                 } 
@@ -61,3 +97,4 @@ export default function HeaderBar(){
         </div>
     )
 }
+

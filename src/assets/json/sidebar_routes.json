@@ -1,11 +1,11 @@
 [
    
     {
-        "display_name": "User",
+        "display_name": "Customer",
         "route": "/admin",
         "icon": "bx bx-user-pin",
         "route_child": ["/admin/addUser"],
-        "route_type": "user"
+        "route_type": "customer"
     },
     {
         "display_name": "Employee",
@@ -20,6 +20,13 @@
         "icon": "bx bx-package",
         "route_child": ["/admin/products/new-product","/admin/products/:id"],
         "route_type": "products"
+    },
+    {
+        "display_name": "ImportNotes",
+        "route": "/admin/import-note",
+        "icon": "bx bx-clinic",
+        "route_child": ["/admin/import-notes/new-import-note","/admin/import-notes/:id"],
+        "route_type": "import-note"
     },
     {
         "display_name": "Orders",

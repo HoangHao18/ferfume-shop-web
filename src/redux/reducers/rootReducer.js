@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 import authReducers from './authReducer';
 
 import categoryReducers from './categoryReducer';
+import customerReducers from './customerReducer';
 import employeeReducers from './employeeReducer';
 import fragranceReducers from './fragranceReducer';
+import importNoteReducers from './importNoteReducer';
 import manufactureReducers from './manufactureReducer';
 import productReducers from './productReducer';
 import roleReducers from './roleReducer';
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
     manufactures: manufactureReducers,
     products: productReducers,
     employees: employeeReducers,
-    roles: roleReducers
+    customers: customerReducers, 
+    roles: roleReducers,
+    importNote: importNoteReducers
     // orders: orderReducers
 })
 

@@ -8,4 +8,6 @@ export const ProductService = {
     getImagesProduct: (id) => apiClient().get(`/product/${id}/list-image`),
     deleteProduct: (productId) => apiClient().delete(`/product/${productId}`),
     editProduct: (id, data) => apiClient().put(`/product/${id}`, data),
+
+    getProductByManufactureId: (id) => apiClient().get(`product/manufacture=${id}`),
 }

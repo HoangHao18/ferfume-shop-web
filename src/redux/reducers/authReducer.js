@@ -31,7 +31,7 @@ function authReducers(state = initialState, action) {
                 isLoading: false,
             }
            
-        case actionTypes.AUTH_LOGIN_CHECK_LOCAL:
+        case actionTypes.AUTH_CHECK_LOGIN_RELOAD:
             return{
                 ...state,
                 currentUser: action.payload,

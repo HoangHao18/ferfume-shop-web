@@ -24,8 +24,10 @@ import Blog from './pages/Guest/Blog';
 import Contact from './pages/Guest/Contact';
 import Register from './pages/Guest/Register';
 //import LogResBgPage from './components/share/LogResBgPage';
+import Sale from './pages/Guest/Sale';
 
 import AdminHome from './pages/Admin/AdminHome';
+import DetailProduct from './pages/Guest/DetailProduct';
 
 function App() {
   return (
@@ -40,8 +42,9 @@ function App() {
               <Route path="/about" component={About}/>
               <Route path="/blog" component={Blog}/> 
               <Route path="/contact" component={Contact}/>
-              {/* <Route path="/sale" component={Sale}/>
-              <Route path="/cart" component={Cart}/>  
+              <Route path="/sale" component={Sale}/>
+              <Route path="/product-detail/:id" component={DetailProduct}/>
+              {/* <Route path="/cart" component={Cart}/>  
               <Route path="/buy" component={Buy}/>   */}
 
               <ToastContainer

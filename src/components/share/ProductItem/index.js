@@ -2,7 +2,7 @@ import './style.scss'
 import Button01 from '../Button01';
 import NumberFormat from 'react-number-format';
 import StarRated from '../StarRated';
-//import { useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 
 export default function ProductItem({
     isHorizontal = false,
@@ -12,10 +12,10 @@ export default function ProductItem({
     price="385000",
     id
 }){
-    //let history = useHistory();
+    let history = useHistory();
     const handleOpenDetailProduct = (idP) => {
         //console.log("idP",idP)
-        //history.push(`/detailsProduct/${idP}`)
+        history.push(`/product-detail/${idP}`)
     }
 
     
