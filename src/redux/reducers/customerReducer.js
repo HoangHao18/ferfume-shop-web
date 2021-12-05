@@ -33,6 +33,12 @@ function customerReducers(state = initialState, action) {
                 customerSingle: action.payload,
                 isLoading: false,
             }
+            case actionTypes.CUSTOMER_GET_BY_EMAIL:
+                return{
+                    ...state,
+                    customerSingle: action.payload,
+                    isLoading: false,
+                }
         case actionTypes.CUSTOMER_EDIT_BY_ID:
             return{
                 ...state,

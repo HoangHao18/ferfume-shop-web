@@ -19,6 +19,26 @@ export const getListCustomersAsync = () => (dispatch) => {
         });
 }
 
+//get by email
+const getCustomerByEmail = (customerSingle) => ({
+    type: actionStypes.CUSTOMER_GET_BY_EMAIL,
+    payload: customerSingle,
+
+})
+
+export const getCustomerByEmailAsync = (email) => (dispatch) => {
+        CustomerService.getSingleCustomer(email)
+        .then(response => {
+            //console.log("response: ", response);
+            //console.log("response dt: ", response.data);
+            dispatch(getCustomerByEmail(response.data));
+            
+        })
+        .catch((error) => {
+            console.log("error: ",error);
+        });
+}
+
 // //create 
 // const createCustomer = () => ({
 //     type: actionStypes.CUSTOMER_CREATE_NEW,

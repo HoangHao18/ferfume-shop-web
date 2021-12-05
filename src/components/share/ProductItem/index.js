@@ -3,6 +3,8 @@ import Button01 from '../Button01';
 import NumberFormat from 'react-number-format';
 import StarRated from '../StarRated';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addProductCartAsync } from '../../../redux/actions/cartAction';
 
 export default function ProductItem({
     isHorizontal = false,
@@ -18,7 +20,11 @@ export default function ProductItem({
         history.push(`/product-detail/${idP}`)
     }
 
-    
+    let dispatch = useDispatch();
+    const handleAddCartQuick = (id) => {
+        //history.push(window.location.href)
+        dispatch(addProductCartAsync({productid: id, number: 1}))
+    }
    
     return (
 
@@ -40,7 +46,7 @@ export default function ProductItem({
         <div className="product-item" onClick={() => handleOpenDetailProduct(id)}>
             <div className="pi-image">
                 <img src={image} alt=""></img>
-                <div className="btn-add-to-cart"><Button01 isRadios={true}>add to cart</Button01></div>
+                <div className="btn-add-to-cart" onClick={() => handleAddCartQuick(id)}><Button01 isRadios={true}>add to cart</Button01></div>
                 
             </div>
             <div className="pi-info">

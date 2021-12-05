@@ -28,6 +28,8 @@ import Sale from './pages/Guest/Sale';
 
 import AdminHome from './pages/Admin/AdminHome';
 import DetailProduct from './pages/Guest/DetailProduct';
+import Cart from './pages/Guest/Cart';
+import Buy from './pages/Guest/Buy';
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
               <Route path="/contact" component={Contact}/>
               <Route path="/sale" component={Sale}/>
               <Route path="/product-detail/:id" component={DetailProduct}/>
+              <Route path="/cart" component={Cart}/>
+              <Route path="/buy" component={Buy}/>
               {/* <Route path="/cart" component={Cart}/>  
               <Route path="/buy" component={Buy}/>   */}
 

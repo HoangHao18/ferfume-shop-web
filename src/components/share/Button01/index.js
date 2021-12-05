@@ -6,7 +6,8 @@ export default function Button01({
     width = "180px",
     height = "46px",
     isRadios = false,
-    linkTo="/"
+    linkTo="/",
+    
 }){
     if(isRadios){
         return(
