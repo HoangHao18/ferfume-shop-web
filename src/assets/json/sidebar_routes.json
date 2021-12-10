@@ -56,25 +56,13 @@
         "route_child": ["/admin/fragrances/new-fragrance","/admin/fragrances/:id"],
         "route_type": "fragrances"
     },
+  
     {
-        "display_name": "discount",
-        "route": "/admin/discount",
-        "icon": "bx bx-gift",
-        "route_child": [],
-        "route_type": ""
-    },
-    {
-        "display_name": "Analytics",
-        "route": "/admin/analytics",
+        "display_name": "statistical - Report",
+        "route": "/admin/report",
         "icon": "bx bx-bar-chart-alt",
         "route_child": [],
         "route_type": ""
-    },
-    {
-        "display_name": "settings",
-        "route": "/admin/settings",
-        "icon": "bx bx-cog",
-        "route_child": [],
-        "route_type": ""
     }
+    
 ]

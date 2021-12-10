@@ -28,6 +28,10 @@ import ImportNote from './ImportNote/ImportNoteList';
 import ImportNoteDetail from './ImportNote/ImportNoteDetail/ImportNoteDetail';
 import EditImportNote from './ImportNote/EditImportNote/EditImportNote';
 import AddImportNote from './ImportNote/AddImportNote/AddImportNote';
+import Order from './Order/OrderList';
+import OrderDetail from './Order/OrderDetail/OrderDetail';
+import EditOrder from './Order/EditOrder/EditOrder';
+import ReportChoose from './Report/ReportChoose';
 
  function Routes(){
     return(
@@ -63,12 +67,12 @@ import AddImportNote from './ImportNote/AddImportNote/AddImportNote';
             <Route exact path='/admin/import-note/detail/:id' component={ImportNoteDetail}/>
             <Route exact path='/admin/import-note/:id' component={EditImportNote}/>
 
-
-            {/*<Route path='/admin/editUser/:id' component={EditUser}/>
-        
             <Route exact path='/admin/orders' component={Order}/>
-            <Route path='/admin/orders/editOrder/:id' component={EditOrder}/> */}
-            
+            <Route exact path='/admin/orders/detail/:id' component={OrderDetail}/>
+            <Route exact path='/admin/orders/:id' component={EditOrder}/>
+
+            <Route exact path='/admin/report' component={ReportChoose}/>
+                        
         </Switch>
     )
 }

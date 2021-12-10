@@ -13,6 +13,12 @@
             //background-color: red;
             padding: 10px 50px;
             .form-buy-info{
+                label{
+                    display: block;
+                }
+                input{
+                    width: 100%;
+                }
                 .form-group{
                     text-align: left;
                     margin-bottom: 20px;
@@ -125,7 +131,7 @@
         background-color: white;
         color: black;
         text-transform: uppercase;
-        width: 210px;
+        width: 230px;
         height: 46px;
         border: none;
         text-align: center;
@@ -143,6 +149,10 @@
         padding-top: 3px;
         font-size: 12px;
         color: #d72929;
+    }
+
+    .paypal-container{
+        margin-top: 20px;
     }
    
 }

@@ -30,12 +30,42 @@ import AdminHome from './pages/Admin/AdminHome';
 import DetailProduct from './pages/Guest/DetailProduct';
 import Cart from './pages/Guest/Cart';
 import Buy from './pages/Guest/Buy';
+import GuestOrders from './pages/Guest/Order/GuestOrders';
+import GuestOrderDetail from './pages/Guest/Order/GuestOrderDetail/GuestOrderDetail';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
+import jwt_decode from "jwt-decode";
+import { loginCheckLocalAsync } from './redux/actions/authAction';
 
 function App() {
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const userCurrent = useSelector(state => state.auth.currentUser); 
+  let dispatch = useDispatch();
+  useEffect(()=>{   
+      if(Cookies.get('X-Auth-Token')){
+          const decoded = jwt_decode(Cookies.get('X-Auth-Token'));
+          dispatch(loginCheckLocalAsync())
+          //dispatch(loginCheckLocalAsync(localStorage.getItem("userCurrentId")))
+      }
+  },[])
+
+  useEffect(()=>{   
+   console.log("userCurrent",userCurrent)
+},[userCurrent])
+
   return (
     <Router>
         <Switch>
-              <Route path="/admin" component={AdminHome}/>
+            {
+              userCurrent ?
+              (userCurrent.roles[0] == "Admin" || userCurrent.roles[0] == "Saler") && isLogin == true ?
+              <Route path="/admin" component={AdminHome}/> : ''
+              : ''
+            }
+            {/* <Route path="/admin" component={AdminHome}/> */}
+
             <div className="App">
               <HeaderBar/>
               <Route exact path="/" component={Home}/>
@@ -46,11 +76,20 @@ function App() {
               <Route path="/contact" component={Contact}/>
               <Route path="/sale" component={Sale}/>
               <Route path="/product-detail/:id" component={DetailProduct}/>
-              <Route path="/cart" component={Cart}/>
               <Route path="/buy" component={Buy}/>
-              {/* <Route path="/cart" component={Cart}/>  
-              <Route path="/buy" component={Buy}/>   */}
+              
+              {
+                isLogin ?  <Route path="/cart" component={Cart}/>: ''
+              }
 
+              {
+                isLogin ?  <Route path="/orders/:customerId" component={GuestOrders}/>: ''
+              }
+              {
+                isLogin ? <Route path="/orders-/:id" component={GuestOrderDetail}/> : ''
+              }
+              
+            
               <ToastContainer
                 position="bottom-right"
                 autoClose={1500}

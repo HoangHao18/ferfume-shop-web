@@ -39,6 +39,35 @@ export const getCustomerByEmailAsync = (email) => (dispatch) => {
         });
 }
 
+export const getCustomerByEmailAsyncB = (email)  => {
+    return async function(dispatch) {     
+        try{
+            let response = (await CustomerService.getSingleCustomer(email));
+            console.log("resposeeeeeeeeee: ",response);
+            // eslint-disable-next-line
+            if(response.status == 200){
+                dispatch(getCustomerByEmail(response.data));
+                //toast.success("UPDATE SUCCESS");
+                return {
+                    ok: true,
+                    customerId: response.data.id
+                    //status: response.data.status
+                }
+            }
+            else{//call api not success not run in here
+                console.log("response.eror: ", response.error);
+                
+            } 
+        }catch(error){
+            //console.log("error.response: ", error.response);
+            //toast.error("UPDATE FAIL")
+            return{
+                ok: false
+            }
+        }
+    }
+}
+
 // //create 
 // const createCustomer = () => ({
 //     type: actionStypes.CUSTOMER_CREATE_NEW,

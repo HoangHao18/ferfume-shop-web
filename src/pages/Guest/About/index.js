@@ -6,18 +6,19 @@ import "./style.scss";
 export  default function About(){
     return(
         <div className="about-page-container">
-            <HeaderImage img= "/assets/images/slider01.jpg" title="About"/>
+            <HeaderImage img= "/assets/images/HeaderImage.jpg" title="About"/>
             <BreakSpace h= "30px"/>
             <div className="container">
                 <div className="row-hh">
                     <div className="col-3 image">
-                        <img src = "/assets/images/slider03.jpg" alt=""></img>
+                        <img src = "/assets/images/decoPN03.png" alt=""></img>
                     </div>
                     <div className="col-9 content">
                         <h3 className="title">Our Story</h3>
-                        <p className="story">Thế giới thời trang gần 20 năm qua đã quen thuộc câu nói: “Thời trang là cách biểu hiện tối đa cá tính mỗi người”.  Ở Việt Nam thấy phần lớn mọi người thường chú trọng nhiều tới cái gọi là “mốt”, cứ vài ba tháng là một mốt mới được lăng xê, đám đông chị em phụ nữ chạy theo mải miết để rồi vài ba tháng sau lại xếp nó vào trong tủ để chạy theo kiểu mốt khác. Nhưng sự thật “mốt” là một vòng quay lặp lại từ người này sang người khác, có chăng là một chút biến tấu và cách điệu, hay nói đúng hơn người ta mua sắm theo một tâm lý “hội chứng đám đông”. Vậy những đối tượng có sự tinh tế, gu thẩm mỹ và yêu cầu khắt khe sẽ dừng lại ở đâu? Đến với thời trang Lenka để sở hữu cho mình những bộ đồ tinh tế, có gu thâm mỹ với sức lôi cuốn đến kỳ lạ.</p>
-                        <p className="story">Ra đời năm 2020, thời trang FaShe với mục tiêu trở thành một trong những shop mua sắm thời trang online uy tín hàng đầu Việt Nam. Tại đây quý khách có thể mua sắm trực tuyến các sản phẩm thời trang quần, áo, chân váy, đầm,.., FaShe sẽ đáp ứng mọi nhu cầu mua sắm thời trang online của quý khách bất cứ lúc nào.</p>    
-                        <p className="story">Với phương trâm luôn làm “vui lòng khách đến vừa lòng khách đi, FaShe luôn tư vấn và cố vấn thời trang cho khách có như cầu về kiểu dáng, loại vải, màu sắc để phù hợp nhất với phong cách của từng người. Không chạy đua theo xu hướng, theo “mốt”, FaShe sẽ mang đến cho bạn trải nghiệm về những món đồ thời trang, tinh tế, có gu thẩm mỹ cao và hợp với phong cách của bạn.</p>
+                        <p className="story">Perfume is a fragrance that is sprayed or rubbed on the body of a person. The purpose of perfume is to make people smell better and to make them more attractive. Perfume was the first luxury product in the world with an established market for consumers.</p>
+                        <p className="story">The term "perfume" derives from Arabic "فروم", meaning something such as "poured forth". Perfumery, as the art of making fragrant perfumes, began in ancient.</p>    
+                        <p className="story">Welcome to Cosmos, the #1 perfume shop for all your scenting needs. We have a wide range of perfumes for you to choose from and we can help you find the one that suits you best.To find the perfume to suit your personality, we offer personalized consultations. Our range includes perfumes from some of the world’s best perfume brands like Chanel and Hermes.</p>
+                        <p className="story">We only use the finest ingredients including oils, which come from natural sources like flowers and plants.</p>
                     </div>
 
                 </div>

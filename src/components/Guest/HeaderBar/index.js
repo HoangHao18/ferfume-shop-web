@@ -1,14 +1,16 @@
 import './style.scss'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 import { loginCheckLocalAsync, logout } from '../../../redux/actions/authAction';
+import { getCustomerByEmailAsyncB } from '../../../redux/actions/customerAction';
 
 export default function HeaderBar(){
     const isLogin = useSelector((state) => state.auth.isLogin);
     const userCurrent = useSelector(state => state.auth.currentUser); 
+    
     // const userCurrent = {
     //     name: "Oggy",
     //     id: 1,
@@ -36,16 +38,25 @@ export default function HeaderBar(){
         }
     },[])
 
-    //let history = useHistory();
-    const handleOrdersOfUser = (userId) => {
-        //history.push(`/orders/${userId}`);
+    let history = useHistory();
+    const handleOrdersOfUser = (email) => {
+        dispatch(getCustomerByEmailAsyncB(email))
+        .then(res =>{
+            if(res.ok == true){
+                console.log("av: ",res.customerId)
+                history.push(`/orders/${res.customerId}`);
+                
+            }
+        }
+        )
+        
     }
 
     const handleLogOut = () => {
         Cookies.remove('X-Auth-Token')
         //dispatch(saveCartAsync({id: userCurrent.id,cart: localStorage.getItem("cart")}))
         dispatch(logout());
-        console.log("curren user nheeeeeeeeee: ",userCurrent,isLogin)
+        //console.log("curren user nheeeeeeeeee: ",userCurrent,isLogin)
         window.location.href = "/"
         
         //console.log("localStorage.getItem cart",localStorage.getItem("cart"))
@@ -72,11 +83,14 @@ export default function HeaderBar(){
             </div>
 
             <div className="col-4 icon-tool-page">
-                <Link to="/cart"><span className="icon-cart-2"><i class='bx bx-shopping-bag icon-2'></i></span></Link> 
+                {
+                    isLogin &&  <Link to="/cart"><span className="icon-cart-2"><i class='bx bx-shopping-bag icon-2'></i></span></Link> 
+                }
+               
 
                 {
-                    isLogin  ?
-                        <span className="icon-cart-2" onClick={()=>handleOrdersOfUser(userCurrent.id)}><i class='bx bx-detail icon-2'></i></span>
+                    isLogin && userCurrent ?
+                        <span className="icon-cart-2" onClick={()=>handleOrdersOfUser(userCurrent.email)}><i class='bx bx-detail icon-2'></i></span>
                     : ''
                 }
 

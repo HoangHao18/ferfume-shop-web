@@ -53,7 +53,7 @@ export  default function Sale(){
     return(
         <div className="sale-page-container">
             <HeaderBar/>
-            <HeaderImage img= "/assets/images/slider01.jpg" title="Sale"/>
+            <HeaderImage img= "/assets/images/HeaderImage.jpg" title="Sale"/>
             <BreakSpace h="30px"/>
             <div className="container">
                 <div className="row-hh">

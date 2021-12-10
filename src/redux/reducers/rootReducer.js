@@ -8,6 +8,7 @@ import employeeReducers from './employeeReducer';
 import fragranceReducers from './fragranceReducer';
 import importNoteReducers from './importNoteReducer';
 import manufactureReducers from './manufactureReducer';
+import orderReducers from './orderReducer';
 import productReducers from './productReducer';
 import roleReducers from './roleReducer';
 
@@ -22,8 +23,8 @@ const rootReducer = combineReducers({
     customers: customerReducers, 
     roles: roleReducers,
     importNote: importNoteReducers,
-    cart: cartReducers
-    // orders: orderReducers
+    cart: cartReducers,
+    orders: orderReducers
 })
 
 export default rootReducer;
