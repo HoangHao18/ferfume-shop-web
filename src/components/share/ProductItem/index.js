@@ -45,6 +45,7 @@ export default function ProductItem({
         
         <div className="product-item" onClick={() => handleOpenDetailProduct(id)}>
             <div className="pi-image">
+                    
                 <img src={image} alt=""></img>
                 <div className="btn-add-to-cart" onClick={() => handleAddCartQuick(id)}><Button01 isRadios={true}>add to cart</Button01></div>
                 

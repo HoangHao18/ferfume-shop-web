@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router";
 //import { getListCategoriesNameAsync } from "../../redux/actions/categoryAction";
-import { getListProductsAsync } from "../../../redux/actions/productAction";
+import { getListProductsAsync, getProductByCategoryIdAsync } from "../../../redux/actions/productAction";
 import { getListCategoriesAsync } from "../../../redux/actions/categoryAction";
 import ProductItem from "../../../components/share/ProductItem";
 
@@ -31,8 +31,8 @@ export  default function Sale(){
         setProductListRender(productList)
     },[productList]);
 
-    const handleFilterProduct = (categoryName) =>{
-        // dispatch(getProductsByCategoryAsync(categoryName))
+    const handleFilterProduct = (categoryId) =>{
+        dispatch(getProductByCategoryIdAsync(categoryId))
         // .then(res => {
         //     if (res.ok) {
         //         // Thành công
@@ -42,12 +42,13 @@ export  default function Sale(){
         //         //console.log("status",status)
         //         setProductListRender([]) 
         //     }
-        // });
+        // // });
         
     }
 
     const handleGetAllProduct = () =>{
-        setProductListRender(productList)
+        dispatch(getListProductsAsync())
+        //setProductListRender(productList)
     }
 
     return(
@@ -65,7 +66,7 @@ export  default function Sale(){
                                 {
                                     categoryList && categoryList.length > 0 ? (
                                         categoryList.map((item, index) => 
-                                           <li key={index} onClick={()=>handleFilterProduct(item.name)}>{item.name}</li>
+                                           <li key={index} onClick={()=>handleFilterProduct(item.id)}>{item.name}</li>
                                         )
                                    ) : ''  
                                 }

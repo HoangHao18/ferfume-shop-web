@@ -19,6 +19,25 @@ export const getListProductsAsync = () => (dispatch) => {
         });
 }
 
+//get list product B
+const getListProductsB = (productList) => ({
+    type: actionStypes.PRODUCT_GET_LIST_B,
+    payload: productList,
+
+})
+
+export const getListProductsBAsync = () => (dispatch) => {
+        ProductService.getAllProductsB()
+        .then(response => {
+            console.log("response: ", response);
+            dispatch(getListProductsB(response.data));
+        })
+        .catch((error) => {
+            console.log("error: ",error);
+        });
+}
+
+
 //get list by id manufacture
 const getProductByManufactureId = (productList) => ({
     type: actionStypes.PRODUCT_GET_LIST_BY_MANUFACTURE_ID,
@@ -45,7 +64,7 @@ const getProductByCategoryId = (productList) => ({
 })
 
 export const getProductByCategoryIdAsync = (id) => (dispatch) => {
-        ProductService.getProductByCategoryId(id)
+        ProductService.getProductByCategory(id)
         .then(response => {
             console.log("response: ", response);
             dispatch(getProductByCategoryId(response.data.reverse()));

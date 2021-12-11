@@ -25,7 +25,7 @@ const settings = {
 
 export default function PragranceTypeSlider({isLoading, listP = [...pragrance_list_ex]}){
     const [pragranceListRender, setPragranceListRender] = useState(listP);
-    const [isLoadingRender, setIsLoadingRender] =useState (isLoading)   
+    const [isLoadingRender, setIsLoadingRender] =useState(isLoading)   
     useEffect(()=>{
         setPragranceListRender(listP)
         //console.log("productListRender: ", productListRender)
@@ -53,7 +53,7 @@ export default function PragranceTypeSlider({isLoading, listP = [...pragrance_li
                                         //image={process.env.REACT_APP_API_IMG + item.images[0]}
                                         img = {item.img}
                                         name = {item.name}
-                                        desc = {item.desc}
+                                        desc = {item.description}
                                         id = {item.id}
                                     />
                                 </div> 

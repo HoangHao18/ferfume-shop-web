@@ -48,8 +48,8 @@ export default function ProductItemsSlider({isLoading, productList = [...product
                             productListRender.map((item, index) => 
                                 <div key={index}>
                                     <ProductItem 
-                                        //image={process.env.REACT_APP_API_IMG + item.images[0]}
-                                        image={item.image}
+                                        image={process.env.REACT_APP_API_IMG + item.images[0].path}
+                                        //image={item.image}
                                         name = {item.name}
                                         rated= {item.rated}
                                         price = {item.price}

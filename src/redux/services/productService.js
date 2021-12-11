@@ -2,6 +2,7 @@ import apiClient from "../api/apiClient";
 
 export const ProductService = {
     getAllProducts: () => apiClient().get("product/"),
+    getAllProductsB: () => apiClient().get("product/b"),
     createProduct: (data) => apiClient().post("product/", data),
     getSingleProduct: (id) => apiClient().get(`/product/${id}`),
 

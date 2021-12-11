@@ -28,8 +28,8 @@ export default function ProductItemsHorizontal({isLoading, productList = [...pro
                             productListRender.map((item, index) => 
                                 <div key={index} className="pi-container">
                                     <ProductItem
-                                        //image={process.env.REACT_APP_API_IMG + item.images[0]}
-                                        image={item.image}
+                                        image={process.env.REACT_APP_API_IMG + item.images[0].path}
+                                        //image={item.image}
                                         isHorizontal = {true}
                                         name = {item.name}
                                         rated= {item.rated}
