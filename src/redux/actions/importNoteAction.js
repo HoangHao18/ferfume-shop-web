@@ -150,3 +150,38 @@ export const updateImportNoteStatusSuccessAsync = (id)  => {
         }
     }
 }
+
+
+
+//update status importNote delete
+const updateImportNoteStatusDelete = () => ({
+    type: actionStypes.IMPORT_NOTE_UPDATE_STATUS_DELETE,
+})
+
+export const updateImportNoteStatusDeleteAsync = (id)  => {
+    return async function(dispatch) {     
+        try{
+            let response = (await ImportNoteService.updateStatusDelete(id));
+            console.log("resposeeeeeeeeee: ",response);
+            // eslint-disable-next-line
+            if(response.status == 200){
+                dispatch(updateImportNoteStatusDelete());
+                //dispatch(getSingleImportNoteAsync());
+                toast.success("CANCEL SUCCESS");
+                return {
+                    ok: true
+                }
+            }
+            else{//call api not success not run in here
+                console.log("response.eror: ", response.error);
+                
+            } 
+        }catch(error){
+            //console.log("error.response: ", error.response);
+            toast.error("UPDATE FAIL")
+            return{
+                ok: false
+            }
+        }
+    }
+}

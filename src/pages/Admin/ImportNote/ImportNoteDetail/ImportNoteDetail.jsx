@@ -224,12 +224,12 @@ function ImportNoteDetail() {
     const [currIndexStart, setCurrIndexStart] = useState(0);
 
     const userTableHead = [
-        <th style={{width: "15%"}}>Image Product</th>,
+        <th style={{width: "16%"}}>Image Product</th>,
         <th style={{width: "15%"}}>ID Product</th>,
-        <th style={{width: "21%"}}>Name Product</th>,
-        <th style={{width: "12%"}}>Number</th>,
-        <th style={{width: "15%"}}>Price</th>,
-        <th style={{width: "18%"}}>Cost</th>,
+        <th style={{width: "20%"}}>Name Product</th>,
+        <th style={{width: "11%"}}>Number</th>,
+        <th style={{width: "17%"}}>Cost Now</th>,
+        <th style={{width: "17%"}}>Cost AVG</th>,
         // <th style={{width: "12%"}}>Action</th>,
     ] 
     const renderHead = (item, index) => item;

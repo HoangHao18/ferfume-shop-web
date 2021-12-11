@@ -9,7 +9,7 @@ export default function Item({
     isRadios=false,
     width = "180px",
     height = "46px",
-    linkTo="/"
+    linkTo="/sale"
 }){
     return(
         <div className="type-product">

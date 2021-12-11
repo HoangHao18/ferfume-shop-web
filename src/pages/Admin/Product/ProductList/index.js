@@ -22,9 +22,9 @@ export default function Product(){
 
     let history = useHistory();
     const handleDelete = (productId) => {
-        if(window.confirm("Are you sure wanted to delete the Product?")){
-            //dispatch(deleteProductAsync(productId));
-        }
+        // if(window.confirm("Are you sure wanted to delete the Product?")){
+        //     //dispatch(deleteProductAsync(productId));
+        // }
     }
     const handleEdit = (id) => {
         history.push(`/admin/products/${id}`);
@@ -69,8 +69,8 @@ export default function Product(){
                 </div>
             </td>
             <td>
-                <span onClick={()=>handleEdit(item.id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
-                <span onClick={()=>handleDelete(item.id)}> <i class='bx bx-trash iconDelete'></i></span>
+                <span className="nnnn" onClick={()=>handleEdit(item.id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
+                {/* <span onClick={()=>handleDelete(item.id)}> <i class='bx bx-trash iconDelete'></i></span> */}
             </td>
         </tr>
     )

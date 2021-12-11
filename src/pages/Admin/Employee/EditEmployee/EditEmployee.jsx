@@ -78,7 +78,7 @@ function EditEmployee() {
     }, []);
 
     useEffect(() => {
-        roleList && setRoleOptions(roleList.map( ({role, name}) => ({value: role, label: name})));
+        roleList && setRoleOptions(roleList.map( ({role, name}) => ({value: role, label: name, isDisabled: !(role-1)})));
         console.log("roleOptions: ", roleOptions)
      }, [roleList]);
 

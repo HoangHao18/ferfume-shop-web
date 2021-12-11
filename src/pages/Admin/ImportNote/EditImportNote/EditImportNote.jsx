@@ -8,7 +8,7 @@ import Select from 'react-select'
 import NumberFormat from 'react-number-format';
 
 //import { getListRolesAsync } from '../../../../redux/actions/roleAction';
-import { getSingleImportNoteAsync, getSingleImportNoteDetailAsync, updateImportNoteStatusSuccessAsync } from '../../../../redux/actions/importNoteAction';
+import { getSingleImportNoteAsync, getSingleImportNoteDetailAsync, updateImportNoteStatusDeleteAsync, updateImportNoteStatusSuccessAsync } from '../../../../redux/actions/importNoteAction';
 import status_items from '../../../../assets/json/status_import_note.json';
 const statusOptions = status_items.map(({ id, name }) => ({ value: id, label: name }));
 
@@ -192,6 +192,24 @@ function EditImportNote() {
         //     // }
 
         if(importNoteSingle.status == 2 || importNoteSingle.status == 0 || formData.status.value == 1) return
+        console.log("formData.status: ",formData.status)
+        if(formData.status.value == 0){
+            dispatch(updateImportNoteStatusDeleteAsync(id))
+            .then(res => {
+                // console.log("ok 1: ",{...employeeEdit.account, role: roleNew} )
+                // console.log("ok: ",res.ok )
+                if (res.ok) {
+                    dispatch(getSingleImportNoteAsync(id));
+                  // Thành công
+                   
+                   
+                } else {
+                  // Thất bại
+                  //console.log("status",status)
+                }
+            });
+        }
+        if(formData.status.value == 2){
             dispatch(updateImportNoteStatusSuccessAsync(id))
             .then(res => {
                 // console.log("ok 1: ",{...employeeEdit.account, role: roleNew} )
@@ -199,24 +217,15 @@ function EditImportNote() {
                 if (res.ok) {
                     dispatch(getSingleImportNoteAsync(id));
                   // Thành công
-                    // console.log("errResponse",errResponse)
-                    // console.log("status",status)
-                    // setFormData({
-                    //     name: '',
-                    //     gender: null,
-                    //     phone: '',
-                    //     password: '',
-                    //     email: '',
-                    //     role: null,           
-                    //     addressNo: '',
-                    //     image: ''
-                    // })
+                   
                    
                 } else {
                   // Thất bại
                   //console.log("status",status)
                 }
             });
+        }
+            
     }
 
     let history = useHistory();  

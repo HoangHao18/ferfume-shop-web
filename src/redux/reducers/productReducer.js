@@ -6,6 +6,7 @@ const initialState = {
     //productListName: null,
     isLoading: true,
     errorMessage: null,
+    productFilterByCategory: null
     //images: null
 }
 
@@ -23,6 +24,12 @@ function productReducers(state = initialState, action) {
                 productList: action.payload,
                 isLoading: false,
             }
+        case actionTypes.PRODUCT_GET_LIST_BY_CATEGORY:
+                return{
+                    ...state,
+                    productList: action.payload,
+                    isLoading: false,
+                }
         case actionTypes.PRODUCT_DELETE_BY_ID:
             return{
                 ...state,

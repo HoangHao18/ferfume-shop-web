@@ -40,8 +40,8 @@ export default function PayPal(props){
                 ],
               });
             },
-            onApprove: (data, actions) => {
-              //const order = await actions.order.capture();
+            onApprove:async function(data, actions) {
+              const order = await actions.order.capture();
               //console.log();
               const article = {
                 deposit: props.total

@@ -3,7 +3,21 @@ import './style.scss'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
+var format = require('date-format');
 
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 
 export default function ReportChoose(){
     //So luong ban
@@ -12,11 +26,13 @@ export default function ReportChoose(){
     
     function handleRank(){
         ReportService.createReportRank({
-            from: (new Date(startDateRank)).toISOString().slice(0,10),
-            to: (new Date(endDateRank)).toISOString().slice(0,10)
+            from: format.asString('yyyy-MM-dd',startDateRank ),
+            to: format.asString('yyyy-MM-dd',endDateRank )
         })
-        // console.log("startDateRank: ",(new Date(startDateRank)).toISOString().slice(0,10))
-        // console.log("endDateRank: ",(new Date(endDateRank)).toISOString().slice(0,10))
+        // console.log("startDateRank: ",startDateRank.toISOString().slice(0,10))
+        // console.log("endDateRank: ",endDateRank.toISOString().slice(0,10))
+        // console.log("startDateRank: ",startDateRank)
+        // console.log("startDateRank B: ",format.asString('yyyy-MM-dd',startDateRank ))
 
     }
 
@@ -27,8 +43,8 @@ export default function ReportChoose(){
     const [endDateRevenue, setEndDateRevenue] = useState(new Date());
     function handleRevenue(){
         ReportService.createReportRevenue({
-            from: (new Date(startDateRevenue)).toISOString().slice(0,10),
-            to: (new Date(endDateRevenue)).toISOString().slice(0,10)
+            from: format.asString('yyyy-MM-dd',startDateRevenue ),
+            to:format.asString('yyyy-MM-dd',endDateRevenue )
         })
         // console.log("startDateRank: ",(new Date(startDateRank)).toISOString().slice(0,10))
         // console.log("endDateRank: ",(new Date(endDateRank)).toISOString().slice(0,10))
@@ -42,6 +58,10 @@ export default function ReportChoose(){
     function handleStock(){
         ReportService.createReportStock()
     }
+
+    function handler(e) {
+        alert(e.target.value);
+     }
     return(
         <div className="report-choose-container">
             <h2 className="page-header">Report and statistical</h2>
@@ -59,6 +79,7 @@ export default function ReportChoose(){
                                         <DatePicker selected={endDateRank} onChange={(date) => setEndDateRank(date)} />
                                         <div className="btn-act-report m" onClick={handleRank}>Render Report</div>
                                     </div>
+                                    {/* <input type="date" id="dt" onchange="handler(event);" /> */}
 
                                 </div>
 

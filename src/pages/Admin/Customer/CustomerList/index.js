@@ -40,14 +40,13 @@ export default function Customer(){
     const userTableHead = [
         // <th style={{width: "10px"}}>ID</th>,
         //<th style={{width: "5%"}}></th>,
-        <th style={{width: "14%"}}>Name</th>,
+        <th style={{width: "16%"}}>Name</th>,
         <th style={{width: "8%"}}>Gender</th>,
-        <th style={{width: "20%"}}>Email</th>,
+        <th style={{width: "24%"}}>Email</th>,
         <th style={{width: "11%"}}>Phone</th>,
-        <th style={{width: "20%"}}>Address</th>,
+        <th style={{width: "26%"}}>Address</th>,
         <th style={{width: "10%"}}>Role</th>,
-        //<th style={{width: "7%"}}>Active</th>,
-        <th style={{width: "12%"}}>Action</th>,
+        // <th style={{width: "12%"}}>Action</th>,
     ] 
     const renderHead = (item, index) => item;
     
@@ -71,10 +70,10 @@ export default function Customer(){
             {/* <td>{item.password}</td> */}
             <td>{item.address}</td>
             <td>{item.account.role.name}</td>
-            <td>
+            {/* <td>
                 <span onClick={()=>handleEdit(item.id)}> <i class='bx bx-edit-alt iconEdit'> </i></span>
                 <span onClick={()=>handleDelete(item.id)}> <i class='bx bx-trash iconDelete no'></i></span>
-            </td>
+            </td> */}
         </tr>
     )
 

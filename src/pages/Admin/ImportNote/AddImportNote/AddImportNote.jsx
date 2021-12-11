@@ -209,7 +209,14 @@ function AddImportNote() {
         //     data.append("images", fileImgPost[key])
         // }
 
-        dispatch(createImportNoteAsync(selectedProducts))
+        console.log("selectedProducts: ",selectedProducts)
+
+        const data = selectedProducts.map((item,index)=>({
+            productid: item.productid,
+            price: item.cost,
+            number: item.number
+        }))
+        dispatch(createImportNoteAsync(data))
         .then(res => {
             console.log("ok: ",res )
             if (res.ok) {

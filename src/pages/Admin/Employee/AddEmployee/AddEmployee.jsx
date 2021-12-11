@@ -278,7 +278,7 @@ function AddEmployee() {
                             <div className="col-8">
                                 <div className="form-group">
                                     <label className="label">Email</label>
-                                    <input id="email" type="email" className="form-control" placeholder=" "
+                                    <input id="email" type="email" className="form-control" placeholder=""
                                         value={formData.email}
                                         onChange={handleChangeFormData('email')}
                                     />

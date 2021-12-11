@@ -85,6 +85,8 @@ export  default function Sale(){
                                 productListRender && productListRender.length > 0 ? (
                                        
                                     productListRender.map((item, index) => 
+                                                                           
+                                        item.number == 0 ? '':
                                         <div className="col-4">
                                             <ProductItem image = {process.env.REACT_APP_API_IMG + item.images[0].path}
                                                 name = {item.name}
@@ -92,7 +94,7 @@ export  default function Sale(){
                                                 id = {item.id}
                                                 // handleOnclickProduct = {(idP) => handleOpenDetailProduct(idP)}
                                                 />
-                                        </div> 
+                                        </div>                                        
                                     )
                                     
                                ) : <div>Not Have Product</div>

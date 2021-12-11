@@ -40,11 +40,12 @@ export const addProductCartAsync = ({ productid, number }) => {
             }
             else{//call api not success not run in here
                 console.log("response.eror: ", response.error);
-                
+                toast.error("PLEASE LOGIN")
             } 
         }catch(error){
             console.log("error.response: ", error.response);
             toast.error(error.response.data)
+            toast.error("PLEASE LOGIN")
             return{
                 ok: false
             }

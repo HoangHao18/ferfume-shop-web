@@ -10,4 +10,5 @@ export const ProductService = {
     editProduct: (id, data) => apiClient().put(`/product/${id}`, data),
 
     getProductByManufactureId: (id) => apiClient().get(`product/manufacture=${id}`),
+    getProductByCategory: (id) => apiClient().get(`product/get-by-category?categoryId=${id}`),
 }

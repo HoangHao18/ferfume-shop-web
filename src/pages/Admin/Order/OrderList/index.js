@@ -62,7 +62,7 @@ export default function Order(){
             <td>{item.createdate}</td>
             <td>{item.customer.id}</td>
             <td>{item.customer.email}</td>
-            <td>{item.nameEmployee ? item.nameEmployee.name : ""}</td>
+            <td>{item.employee ? item.employee.name : ""}</td>
             <td><NumberFormat value={item.totalprice} displayType={'text'} thousandSeparator={true} /> VND</td> 
             <td>{item.ispaid === 1 ? "True" : "False"}</td>
             <td>{item.status === 1 ? "Chưa xác nhận" : item.status === 2 ? "Đã xác nhận" : item.status === 3 ?"Đang giao": item.status === 4? "Thành công": "Đã Xóa"}</td>     

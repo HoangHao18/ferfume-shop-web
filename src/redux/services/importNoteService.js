@@ -6,6 +6,7 @@ export const ImportNoteService = {
     // deleteImportNote: (categoryId) => apiClient().delete(`/category/${categoryId}`),
      getSingleImportNote: (id) => apiClient().get(`/ImportNote/${id}`),
      getDetailSingleImportNote: (id) => apiClient().get(`/ImportNote/Details?id=${id}`),
-     updateStatusSuccess: (id) => apiClient().put(`/ImportNote/update-status/${id}`)
-    // editImportNote: ({id, name, description }) => apiClient().put(`/category/${id}`, {id, name, description }),
+     updateStatusSuccess: (id) => apiClient().put(`/ImportNote/update-status/${id}`),
+     updateStatusDelete: (id) => apiClient().put(`/ImportNote/cancelImportNote/${id}`)
+    
 }
