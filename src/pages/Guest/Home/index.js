@@ -30,7 +30,7 @@ export default function Home(){
             <TitleSection title="sản phẩm nổi bật"/>
             {
                 productListB &&
-                <ProductItemsSlider isLoading={isLoading} productList={productListB.filter((item)=>{return item.number >= 0}).splice(0,6)}/>
+                <ProductItemsSlider isLoading={isLoading} productList={productListB.filter((item)=>{return item.number > 0}).splice(0,6)}/>
             }
            
 
